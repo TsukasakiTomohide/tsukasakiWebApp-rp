@@ -56,5 +56,5 @@
           with:
             app-name: 'tsukasakiWebApp'
             slot-name: 'production'
-            publish-profile: ${{ secrets.AzureAppService_PublishProfile_b172257a811248088408bbe18cbe4b37 }}
+            publish-profile: ${{ secrets.AzureAppService_PublishProfile_5dc7278ce05746b8a7b4617be5cac9d9 }}
             package: .
