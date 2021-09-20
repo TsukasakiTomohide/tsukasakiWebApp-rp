@@ -1,8 +1,8 @@
 <?php
-$serverName = "tsukasakimysqlserver.database.windows.net";
+$serverName = "goalnavigator.database.windows.net";
 $connectionInfo = array(
-	"Database"=>"mySampleDatabase",
-	"UID"=>"azureuser",
+	"Database"=>"goalnavigator",
+	"UID"=>"hioki",
 	"PWD"=>"123456Aa%");
 
 // Connection //
