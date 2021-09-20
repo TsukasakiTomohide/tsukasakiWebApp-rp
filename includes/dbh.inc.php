@@ -1,7 +1,7 @@
 <?php
 
 // Parameters for connection //
-$serverName = 'localhost';
+$serverName = 'goalnavigator.database.windows.net';
 $uid 	    = 'hioki';
 $pwd 	    = '123456Aa%';
 $database   = 'goalnavigator';
