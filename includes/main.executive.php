@@ -12,7 +12,6 @@
     echo("3");
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
-        echo($_SESSION['usersposition']);
         header("location: ../login.php?error=adminerror");
         exit();
     }
