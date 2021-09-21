@@ -1,6 +1,6 @@
 <?php
     echo("1");
-    include_once 'header.php';
+    include_once './header.php';
     echo("2");
     require_once 'dbh.inc.php';
     echo("3");
