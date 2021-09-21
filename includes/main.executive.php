@@ -9,6 +9,7 @@
 
     $_SESSION['usersposition'] = 'executive';
     echo($_SESSION['usersposition']);
+    echo("4");
     echo($_SESSION['usersemail']);
     echo("5");
     // Nobody can directly enter this page except executive. Login is necessary.
