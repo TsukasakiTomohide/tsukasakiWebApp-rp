@@ -5,7 +5,6 @@
     require_once 'vc.functions.php';
     if(!isset($_SESSION)){
         session_start();
-        echo("2");
     }
     $_SESSION['usersposition'] = 'executive';
     echo("4");
@@ -16,7 +15,7 @@
         header("location: ../login.php?error=adminerror");
         exit();
     }
-    echo($_SESSION['usersposition']);
+    echo($_SESSION['usersemail']);
     $_SESSION['vcPurpose'] = 'approval';
     $ac = date('Y'); // Obraining the year
 ?>
