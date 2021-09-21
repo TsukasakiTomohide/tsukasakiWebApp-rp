@@ -390,9 +390,9 @@ function vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail){
 
 function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender){
 
-    if(!isset($_SESSION)){
-        session_start();
-     }
+    //if(!isset($_SESSION)){
+    //    session_start();
+    // }
 
     try {
         $stmt = $conn->prepare("EXEC msdb.dbo.sp_send_dbmail @profile_name=:profile_name, @recipients=:recipients, @subject=:subject, @body=:body, @reply_to =:reply_to");
@@ -943,9 +943,9 @@ function updateEmployeInfo($conn, $employeeInfo){
 
     $stmt = pdoPrepare($conn, $sql);
     
-    if(!isset($_SESSION)){
-        session_start();
-    }
+    //if(!isset($_SESSION)){
+    //    session_start();
+    //}
 
     pdoBind($stmt, 1, $employeeInfo['employeeName'], PDO::PARAM_STR);
     pdoBind($stmt, 2, $employeeInfo['employeeEmail'], PDO::PARAM_STR);
