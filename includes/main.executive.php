@@ -7,7 +7,6 @@
         session_start();
         echo("2");
     }
-    echo("2");
     $_SESSION['usersposition'] = 'executive';
     echo("4");
     echo($_SESSION['usersposition']);
