@@ -5,8 +5,9 @@
     require_once 'vc.functions.php';
     if(!isset($_SESSION)){
         session_start();
+        echo("1");
     }
-    echo("1");
+    echo("2");
     echo($_SESSION['usersposition']);
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
