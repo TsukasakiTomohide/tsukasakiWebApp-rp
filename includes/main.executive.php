@@ -7,6 +7,7 @@
         session_start();
     }
     echo("1");
+    echo($_SESSION['usersposition']);
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
         echo($_SESSION['usersposition']);
