@@ -6,8 +6,8 @@
     if(!isset($_SESSION)){
         session_start();
     }
+
     $_SESSION['usersposition'] = 'executive';
-    echo("4");
     echo($_SESSION['usersposition']);
     echo("5");
     // Nobody can directly enter this page except executive. Login is necessary.
@@ -15,7 +15,7 @@
         header("location: ../login.php?error=adminerror");
         exit();
     }
-    echo($_SESSION['usersemail']);
+    
     $_SESSION['vcPurpose'] = 'approval';
     $ac = date('Y'); // Obraining the year
 ?>
