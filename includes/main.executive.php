@@ -1,17 +1,13 @@
 <?php
 
-    include_once './header.php';
-    require_once './dbh.inc.php';
+    include_once 'header.php';
+    require_once 'dbh.inc.php';
     require_once 'vc.functions.php';
-    //if(!isset($_SESSION)){
+    if(!isset($_SESSION)){
         session_start();
-    //}
+    }
 
     $_SESSION['usersposition'] = 'executive';
-    echo($_SESSION['usersposition']);
-    echo("1");
-    echo($_SESSION['usersemail']);
-    echo("5");
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
         header("location: ../login.php?error=adminerror");
