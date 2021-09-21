@@ -1,20 +1,19 @@
 <?php
-    echo("1");
+
     include_once './header.php';
-    echo("2");
-    require_once 'dbh.inc.php';
-    echo("3");
+    require_once './dbh.inc.php';
     require_once 'vc.functions.php';
-    echo("4");
     if(!isset($_SESSION)){
         session_start();
     }
-    echo("5");
+    echo("1");
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
+        echo($_SESSION['usersposition']);
         header("location: ../login.php?error=adminerror");
         exit();
     }
+    echo($_SESSION['usersposition']);
     $_SESSION['vcPurpose'] = 'approval';
     $ac = date('Y'); // Obraining the year
 ?>
