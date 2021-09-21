@@ -7,7 +7,6 @@
         session_start();
     }
 
-    $_SESSION['usersposition'] = 'executive';
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
         header("location: ../login.php?error=adminerror");
