@@ -3,9 +3,9 @@
     include_once './header.php';
     require_once './dbh.inc.php';
     require_once 'vc.functions.php';
-    if(!isset($_SESSION)){
+    //if(!isset($_SESSION)){
         session_start();
-    }
+    //}
 
     $_SESSION['usersposition'] = 'executive';
     echo($_SESSION['usersposition']);
