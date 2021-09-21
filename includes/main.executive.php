@@ -5,7 +5,7 @@
     require_once 'vc.functions.php';
     if(!isset($_SESSION)){
         session_start();
-        echo("2");
+        echo("1");
     }
     $_SESSION['usersposition'] = 'executive';
     echo("4");
