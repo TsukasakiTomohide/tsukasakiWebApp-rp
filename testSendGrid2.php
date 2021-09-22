@@ -10,6 +10,7 @@
 // https://github.com/sendgrid/sendgrid-php/releases
 
 $email = new \SendGrid\Mail\Mail(); 
+/*
 $email->setFrom("ttsukasaki@hiokiusa.com", "Example User");
 $email->setSubject("This is a test email.");
 $email->addTo("tsukasaki.tomohide.com@gmail.com", "Example User");
