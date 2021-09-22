@@ -8,7 +8,7 @@
 // replacing <PATH TO> with the path to the sendgrid-php.php file,
 // which is included in the download:
 // https://github.com/sendgrid/sendgrid-php/releases
-/*
+
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("ttsukasaki@hiokiusa.com", "Example User");
 $email->setSubject("This is a test email.");
