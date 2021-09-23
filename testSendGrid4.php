@@ -1,5 +1,5 @@
 <?php
-
+require_once 'config.php';
 $url = 'https://api.sendgrid.com/';
 $user = SENDGRID_USERNAME;
 $pass = SENDGRID_API_KEY;
