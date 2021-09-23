@@ -14,7 +14,7 @@ $json_string = array(
 
 
 $params = array(
-    'api_user'  => $user,
+    //'api_user'  => $user,
     'api_key'   => $pass,
     'x-smtpapi' => json_encode($json_string),
     'to'        => 'example3@sendgrid.com',
