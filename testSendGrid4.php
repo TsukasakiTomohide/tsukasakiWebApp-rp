@@ -1,9 +1,9 @@
 <?php
 
-$userid  = 'ttsukasaki@hiokiusa.com';
-$password = 'MasakoShota08051019';
+$username  = 'apikey';
+$password = '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';
 
-$sendgrid = new SendGrid($userid, $password);
+$sendgrid = new SendGrid($username, $password);
 $mail = new SendGridMail();
 $mail->addTo('tsukasaki.tomohide.com@gmail.com')->
        setFrom('ttsukasaki@hiokiusa.com')->
