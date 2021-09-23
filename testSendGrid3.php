@@ -1,5 +1,4 @@
 <?php
-
 $userid  = 'ttsukasaki@hiokiusa.com';
 $password = 'MasakoShota08051019';
 
