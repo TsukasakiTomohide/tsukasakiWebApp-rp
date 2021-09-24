@@ -171,20 +171,20 @@ elseif(isset($_POST['registerbutton'])){
                 exit();
              }
      }
-        // Check if the same email address is saved in the database
-        $Result = checkEmailDuplicate($conn, $_POST['employeeEmail']);
+    // Check if the same email address is saved in the database
+    $Result = checkEmailDuplicate($conn, $_POST['employeeEmail']);
 
-        if (!$Result){ // The same email address already exists in the database
-            header("location: ../includes/admin.registerEmployee.php?error=alreadyexists");
-            exit();
-         }
-        // Add the employee to the database
-        $Result = addNewEmployee($conn, $_POST);
-        if (!$Result){
-            header("location: ../includes/admin.registerEmployee.php?error=failaddingemployee");
-            exit();
-         }
-        header("location: ../includes/admin.registerEmployee.php?error=succeeded");
+    if (!$Result){ // The same email address already exists in the database
+        header("location: ../includes/admin.registerEmployee.php?error=alreadyexists");
+        exit();
+        }
+    // Add the employee to the database
+    $Result = addNewEmployee($conn, $_POST);
+    if (!$Result){
+        header("location: ../includes/admin.registerEmployee.php?error=failaddingemployee");
+        exit();
+        }
+    header("location: ../includes/admin.registerEmployee.php?error=succeeded");
  }
 //******************************************************************************//
 //**************************** admin.addVCspace.php ****************************//
