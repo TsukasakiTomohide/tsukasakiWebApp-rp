@@ -64,7 +64,7 @@ function loginUser($conn, $email, $pwd){
      }
     
     // Input the employee's info to global variables
-    session_start();
+    //session_start();
     $_SESSION['usersname']     = $Result['usersName'];     // Used on main.staff.php
     $_SESSION['usersboss']     = $Result['usersBoss'];     // used on main.staff.php
     $_SESSION['bossemail']     = $Result['bossEmail'];     // Used when sending email, passwordChange.php
