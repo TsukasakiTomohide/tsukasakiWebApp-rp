@@ -12,6 +12,7 @@ function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $sub
     // https://github.com/sendgrid/sendgrid-php/releases
 
     echo($senderName);
+    /*
     $email = new \SendGrid\Mail\Mail(); 
     $email->setFrom($senderEmail, $senderName);
     $email->setSubject($subject);
@@ -29,4 +30,5 @@ function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $sub
     } catch (Exception $e) {
         echo 'Caught exception: '. $e->getMessage() ."\n";
      }
+     */
 }
