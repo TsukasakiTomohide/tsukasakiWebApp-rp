@@ -11,6 +11,7 @@ function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $sub
     // which is included in the download:
     // https://github.com/sendgrid/sendgrid-php/releases
 
+    echo($senderName);
     $email = new \SendGrid\Mail\Mail(); 
     $email->setFrom($senderEmail, $senderName);
     $email->setSubject($subject);
@@ -27,5 +28,5 @@ function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $sub
         //print $response->body() . "\n";
     } catch (Exception $e) {
         echo 'Caught exception: '. $e->getMessage() ."\n";
-}
+     }
 }
