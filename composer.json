@@ -1,5 +1,5 @@
 {
-"require": {
-             "zendframework/zendframework": "2.3.*"
-   }
+  "require": {
+    "sendgrid/sendgrid": "~7"
+  }
 }
