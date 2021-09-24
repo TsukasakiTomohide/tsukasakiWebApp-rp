@@ -1,6 +1,6 @@
 <?php
    require_once 'config.php';
-// require 'vendor/autoload.php'; // If you're using Composer (recommended)
+   require 'vendor/autoload.php'; // If you're using Composer (recommended)
 // Comment out the above line if not using Composer
 // require("./sendgrid/sendgrid-php.php");
 // If not using Composer, uncomment the above line and
@@ -10,7 +10,6 @@
 // https://github.com/sendgrid/sendgrid-php/releases
 
 $email = new \SendGrid\Mail\Mail(); 
-/*
 $email->setFrom("ttsukasaki@hiokiusa.com", "Example User");
 $email->setSubject("This is a test email.");
 $email->addTo("tsukasaki.tomohide.com@gmail.com", "Example User");
