@@ -895,7 +895,6 @@ function addNewEmployee($conn, $employeedata){
 
         $newPassword =  password_hash($employeedata['employeePassword'], PASSWORD_BCRYPT);
 
-        // Make a SQL statement
         pdoBind($stmt, 1, $employeedata['employeeName'], PDO::PARAM_STR);
         pdoBind($stmt, 2, $employeedata['employeeEmail'], PDO::PARAM_STR);
         pdoBind($stmt, 3, $newPassword, PDO::PARAM_STR);
