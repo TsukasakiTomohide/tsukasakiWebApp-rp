@@ -388,45 +388,28 @@ function vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail){
 
  }
 
-function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender){
+function sendMail($state, $usersEmail, $year, $quarter, $phase, $calender){
 
     //if(!isset($_SESSION)){
     //    session_start();
     // }
 
     try {
-        $stmt = $conn->prepare("EXEC msdb.dbo.sp_send_dbmail @profile_name=:profile_name, @recipients=:recipients, @subject=:subject, @body=:body, @reply_to =:reply_to");
-        $profilename = 'GoalNavigatorProfile';
+        require_once '../sendMail.php';
+
         $subject     = $usersEmail."'s VC was ".$state;
 
         if($phase == 'Goals Approved'){
             $body = "$usersEmail's VC of Q$quarter, $year was $state. Please check the document. The one on one meeting will be $calender.";
         }
         else{
-            $Body = "$usersEmail's VC of Q$quarter, $year was $state. Please check the document."; 
+            $body = "$usersEmail's VC of Q$quarter, $year was $state. Please check the document."; 
         }
-        /*
-        $results = $stmt->execute(
-            array(
-                ':profile_name' => $profilename,
-                ':recipients'   => $usersEmail,
-                ':subject'      => $subject,
-                ':body'         => $body,
-                ':reply_to'     => $_SESSION["approveremail"]
-            )
-         );
 
-        $results = $stmt->execute(
-            array(
-                ':profile_name' => $profilename,
-                ':recipients'   => $_SESSION["approveremail"],
-                ':subject'      => $subject,
-                ':body'         => $body,
-                ':reply_to'     => $usersEmail
-                )
-         );
-        */
-         return true;
+        sendMail($usersEmail, $usersEmail, $_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
+        sendMail($_SESSION["approveremail"], $_SESSION["approvername"], $usersEmail, $usersEmail, $subject, $body);
+
+        return true;
 
       } catch (Exception $e) {
         // エラーの場合
