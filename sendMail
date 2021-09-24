@@ -1,6 +1,4 @@
 <?php
-
-function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $subject, $body){
    require_once 'config.php';
    require 'vendor/autoload.php'; // If you're using Composer (recommended)
     // Comment out the above line if not using Composer
@@ -10,6 +8,8 @@ function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $sub
     // replacing <PATH TO> with the path to the sendgrid-php.php file,
     // which is included in the download:
     // https://github.com/sendgrid/sendgrid-php/releases
+    
+function sendMail($senderEmail, $senderName, $receiverEmail, $receiverName, $subject, $body){
 
     echo($senderName);
     /*
