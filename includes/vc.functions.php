@@ -620,7 +620,10 @@ function DisabledCalender($usersposition, $vc, $phase, $ApproverVC){
     if($ApproverVC != false && $usersposition == "staff" && $vc == '3'){
         return 'disabled';
     }
-    if ($phase == 'Submitted' || $phase == 'Goals Approved'){
+    elseif($usersposition == "staff" && $vc == '4' || $phase == 'Submitted'){
+        return 'disabled';
+    }
+    elseif ($phase == 'Submitted' || $phase == 'Goals Approved'){
         return '';
     }
     else{
@@ -657,7 +660,7 @@ function DisabledSubmitButton($position, $vc, $vcPurpose, $phase, $ApproverVC){
             return 'disabled';
         }
         // The position is staff, and the manager's VC3 is Submitted or Unsubmitted.
-        elseif($ApproverVC != false && ($ApproverVC['phase'] == 'Submitted' || $ApproverVC['phase'] == 'Unsubmitted')){
+        elseif($ApproverVC != false && ($phase == 'Submitted' || $phase == 'Unsubmitted')){
             return 'disabled';
         }
         else{
@@ -686,7 +689,7 @@ function DisabledSaveButton($position, $vc, $vcPurpose, $phase, $ApproverVC){
             return 'disabled';
         }
         // The position is staff, and the manager's VC3 is Submitted or Unsubmitted.
-        elseif($ApproverVC != false && ($ApproverVC['phase'] == 'Submitted' || $ApproverVC['phase'] == 'Unsubmitted')){
+        elseif($ApproverVC != false && ($phase == 'Submitted' || $phase == 'Unsubmitted')){
             return 'disabled';
         }
         else{
