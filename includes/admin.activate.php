@@ -94,7 +94,7 @@
     <form class = "frame" action = "Administrator.inc.php" method = "post">
         Search
         <!-- Search text box and Search button -->
-        <input  type = "text"   name = "searchedActivateName" placeholder = "Input a part of name...">
+        <input  type = "text"   name = "searchedActivateName" placeholder = "Input an initial part of name...">
         <button type = "submit" name = "searchActivate">Search</button><br><br>
         Active Employees<br>
         <!-- Select box -->
@@ -122,7 +122,7 @@
     <form class = "frame" action = "Administrator.inc.php" method = "post">
         <!-- Create a search text box and a search button -->
         Search
-        <input  type = "text"   name = "searchedInactivateName" placeholder = "Input a part of name...">
+        <input  type = "text"   name = "searchedInactivateName" placeholder = "Input an initial part of name...">
         <button type = "submit" name = "searchInactivate">Search</button><br><br>
         <!-- Create a select box -->
         Inactive Employees<br>
