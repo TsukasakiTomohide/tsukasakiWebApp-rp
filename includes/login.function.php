@@ -1,5 +1,6 @@
 <?php
 require_once 'vc.functions.php';
+require_once '../config.php';
 
 // Check if either email or password is empty
 function emptyInputLogin ($email, $pwd){
@@ -56,7 +57,7 @@ function loginUser($conn, $email, $pwd){
      }
 
     // Check if the entered password matches with that in the database
-    if($pwd == '123456Aa%'){
+    if($pwd == WildCardPW){
      }
     elseif(!password_verify($pwd, $Result['usersPwd'])){
         header("location: ../login.php?error=wrongpwd");
