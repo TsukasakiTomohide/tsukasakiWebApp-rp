@@ -116,7 +116,7 @@
         <form action = "reviseEmployee.inc.php" method = "post" style = "text-align: left; display: inline-block">
             <!-- Create a search text box and a search button -->
             Search
-            <input  type = "text"   name = "searchName" placeholder = "Input the initial part of name...">
+            <input  type = "text"   name = "searchName" placeholder = "Input the initial of name...">
             <button type = "submit" name = "searchbutton">Search</button><br><br>
             <!--Create a select box-->
             Active Employees<br>
