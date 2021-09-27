@@ -51,7 +51,13 @@ elseif(isset($_POST["submit"])){
     $usersEmail = substr($_POST["submit"], $pos+1);
 
     //Update VC data to SQL
-    $Result = SaveSubmitSQL($conn, $year, $quarter, $vc, $phase, $_POST["calender"], $usersEmail, $_POST);
+    if(isset($_POST["calender"])){
+        $calender = $_POST["calender"];
+    }
+    else{
+        $calender = "";
+    }
+    $Result = SaveSubmitSQL($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $_POST);
 
     if ($Result == false){
         header("location: ../includes/vc.php?error=stmtfailed");
@@ -144,7 +150,7 @@ function SaveSubmitSQL($conn, $year, $quarter, $vc, $phase, $calender, $usersEma
     vcRemoveNullData();
 
     //Update VC data to SQL
-    if($usersEmail == $_SESSION['approveremail']){
+    if($usersEmail != $_SESSION['approveremail']){
         $Result = vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
     }
     else{
