@@ -71,7 +71,7 @@
                 - one uppercase letter (A - Z)<br>
                 - one lowercase letter (a - z)<br>
                 - one special charactor ( @ # \ - _ $ % ^ & + = § ! \ )<br>
-                - The length must be from 8 to 12 letters.</p>');
+                - The length must be from 8 to 20 letters.</p>');
             }
             else{
                 echo("<br>");
