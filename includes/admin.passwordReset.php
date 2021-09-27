@@ -92,7 +92,7 @@
     <form class = "frame" action = "Administrator.inc.php" method = "post">
         <!-- Search text box and Search button -->
         Search
-        <input  type = "text"   name = "searchPwdName" placeholder = "Input a part of name...">
+        <input  type = "text"   name = "searchPwdName" placeholder = "Input an initial part of name...">
         <button type = "submit" name = "searchPwdbutton">Search</button><br><br>
         <!-- Create a select box -->
         Active Employees<br>
