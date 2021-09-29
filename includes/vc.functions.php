@@ -388,26 +388,25 @@ function vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail){
 
  }
 
-function sendMail($state, $usersEmail, $year, $quarter, $phase, $calender){
+function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender){
 
     //if(!isset($_SESSION)){
     //    session_start();
     // }
 
     try {
-        require_once '../sendMail.php';
-
-        $subject     = $usersEmail."'s VC was ".$state;
+        $usersName = checkEmailDuplicate($conn, $usersEmail);
+        $subject     = $usersName."'s VC was ".$state;
 
         if($phase == 'Goals Approved'){
-            $body = "$usersEmail's VC of Q$quarter, $year was $state. Please check the document. The one on one meeting will be $calender.";
+            $body = "$usersName's VC of Q$quarter, $year was $state. Please check the document. The one on one meeting will be $calender.";
         }
         else{
-            $body = "$usersEmail's VC of Q$quarter, $year was $state. Please check the document."; 
+            $body = "$usersName's VC of Q$quarter, $year was $state. Please check the document."; 
         }
 
-        sendMail($usersEmail, $usersEmail, $_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
-        sendMail($_SESSION["approveremail"], $_SESSION["approvername"], $usersEmail, $usersEmail, $subject, $body);
+        sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
+        sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
 
         return true;
 
@@ -417,7 +416,43 @@ function sendMail($state, $usersEmail, $year, $quarter, $phase, $calender){
         return false;
       }
  }
+function sendMailSendGrid($conn, $receiversEmail, $receiversName, $subject, $body){
 
+    require_once 'vendor/autoload.php'; // If you're using Composer (recommended)
+ 
+    $email = new \SendGrid\Mail\Mail(); 
+    $email->setFrom("ttsukasaki@hiokiusa.com", "Goal Navigator");
+    $email->setSubject($subject);
+    $email->addTo($receiversEmail, $receiversName);
+    $email->addContent("text/plain", $body);
+
+    $sendgrid = new \SendGrid(getSendGridApiKey($conn));
+    try {
+        $response = $sendgrid->send($email);
+        //print $response->statusCode() . "\n";
+        //print_r($response->headers());
+        //print $response->body() . "\n";
+    } catch (Exception $e) {
+        echo 'Caught exception: '. $e->getMessage() ."\n";
+    }
+ }
+
+function getSendGridApiKey($conn){
+    $sql = "SELECT TOP (1) sendgridApiKey FROM [dbo].[param];";
+
+    $stmt = pdoPrepare($conn, $sql);
+
+    // Send the SQL statement
+    $results = pdoExecute($stmt);
+    $row = pdoFetch($stmt);
+
+    if(empty($row)){
+        return false;
+    }
+    else{
+        return $row['sendgridApiKey'];
+    }
+}
 function phaseChange($conn, $year, $quarter, $vc, $phase, $usersEmail){
 
     if($phase == 'Unsubmitted'){
@@ -863,7 +898,7 @@ function getUsersPassword($conn, $usersEmail){
 //*******************************************************//
 //*************** admin.registerEmployee.php *****************//
 //*******************************************************//
-function checkEmailDuplicate($conn, $usersemail){
+function checkEmailDuplicate($conn, $usersEmail){
 
         $sql = "SELECT usersName FROM users WHERE usersEmail = ?;";
 
@@ -877,10 +912,10 @@ function checkEmailDuplicate($conn, $usersemail){
         $row = pdoFetch($stmt);
 
         if(empty($row)){
-            return true;
+            return false;
         }
         else{
-            return false;
+            return $row['usersName'];
         }
  }
 
