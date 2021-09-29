@@ -35,7 +35,7 @@ if(isset($_POST["save"])){
     }
 
     if($_POST['email'] == 'Send Email'){
-        sendMail('saved', $usersEmail, $year, $quarter, $phase, $_POST["calender"]);
+        sendMail($conn, 'saved', $usersEmail, $year, $quarter, $phase, $_POST["calender"]);
     }
 
     $usersInfo = $year.$quarter.$vc.$usersEmail;
@@ -75,7 +75,7 @@ elseif(isset($_POST["submit"])){
 
     //Send Email to the boss
     if($_POST['email'] == 'Send Email'){
-        sendMail('submitted', $usersEmail, $year, $quarter, $phase, $_POST["calender"]);
+        sendMail($conn, 'submitted', $usersEmail, $year, $quarter, $phase, $_POST["calender"]);
     }
     if ($Result == false){
         header("location: ../includes/vc.php?error=stmtfailed");
@@ -203,7 +203,7 @@ function rejectVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
 
     // Send Email
     if ($_POST['email'] != 'Not Send'){
-        $Result = sendMail($state, $usersEmail, $year, $quarter, $phase, $calender); // $state is approved or rejected
+        $Result = sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender); // $state is approved or rejected
         if ($Result == false){
             exit();
         }
@@ -253,7 +253,7 @@ function approveVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, 
 
     // Send Email
     if ($_POST['email'] != 'Not Send'){
-        $Result = sendMail($state, $usersEmail, $year, $quarter, $phase, $calender); // $state is approved or rejected
+        $Result = sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender); // $state is approved or rejected
         if ($Result == false){
             exit();
         }
