@@ -116,7 +116,7 @@ function getStaffName($conn, $approveremail){
     }
  }
 
-// When a VC form is submitted, it is sploaded to the database
+// When a VC form is submitted, it is uploaded to the database
 function vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData){
 
     if($phase == 'Unsubmitted'){
@@ -127,13 +127,13 @@ function vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
     }
     elseif($phase == 'Submitted'){
         for($i = 1; $i <= 5; $i++){
-            $param[$i] = "`weight_$i`=? ";
+            $param[$i] = "weight_$i = ?";
         }
         $sql = "Update [dbo].[$year] SET OneOnOne = ?, $param[1], $param[2], $param[3], $param[4], $param[5] WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
     }
     elseif($phase == 'Goals Approved'){
         for($i = 1; $i <= 5; $i++){
-            $param[$i] = "weight_$i, quarterResult_$i = ?,selfEval_$i = ? ";
+            $param[$i] = "weight_$i = ?, quarterResult_$i = ?, selfEval_$i = ?";
         }
         $sql = "Update [dbo].[$year] SET OneOnOne = ?, $param[1], $param[2], $param[3], $param[4], $param[5] WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
     }
@@ -170,7 +170,7 @@ function vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
             pdoBind($stmt, 3*$i+3, $vcData["Res_".($i+1)], PDO::PARAM_STR);
             pdoBind($stmt, 3*$i+4, $vcData["Self_".($i+1)], PDO::PARAM_STR);
         }
-        $i = 16;
+        $i = 17;
     }
     elseif($phase == 'Self Evaluated'){
         for($i = 0; $i < 5; $i++){
@@ -613,28 +613,46 @@ function DisabledApproveButton($vcPurpose, $phase){
     if ($vcPurpose == 'approval' && ($phase == 'Submitted' || $phase == 'Self Evaluated')){
         return '';
     }
-    else{
+    else{ // Staff is always disabled
         return 'disabled';}
  }
-function DisabledCalender($usersposition, $vc, $phase, $ApproverVC){
-    if($ApproverVC != false && $usersposition == "staff" && $vc == '3'){
-        return 'disabled';
+function DisabledCalender($usersposition, $vc, $vcPurpose, $phase, $ApproverVC){
+    if($usersposition == "staff"){
+        if($vc == '3'){
+            return 'disabled';
+        }
+        elseif($vc == '4'){
+            if($phase == 'Unsubmitted' || $phase == 'Submitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
+                return 'disabled';
+            }
+            if($phase == 'Goals Approved'){
+                return '';
+            }
+        }
     }
-    elseif($usersposition == "staff" && $vc == '4' || $phase == 'Submitted'){
-        return 'disabled';
-    }
-    elseif ($phase == 'Submitted' || $phase == 'Goals Approved'){
-        return '';
+    elseif($usersposition == 'manager' && $vcPurpose == 'write'){
+        if($phase == 'Unsubmitted' || $phase == 'Submitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
+            return 'disabled';
+        }
+        if($phase == 'Goals Approved'){
+            return '';
+        }
     }
     else{
-        return 'disabled';
-     }
+        if($phase == 'Unsubmitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
+            return 'disabled';
+        }
+        elseif ($phase == 'Submitted' || $phase == 'Goals Approved'){
+            return '';
+        }
+
+    }
  }
 function vcTimestamp($OneOnOne, $phase){
-     if($phase != 'Goals Approved'){
-         return date('Y').'-'.date('m').'-'.date('d');
+    if ($OneOnOne == null){
+        return date('Y').'-'.date('m').'-'.date('d');
      }
-     else{
+    else{
         $Time = substr($OneOnOne, 0, 10);
          return $Time;
      }
@@ -648,79 +666,72 @@ function DisabledRejectButton($vcPurpose, $phase){
             $phase == 'Finalized'        )){
         return '';
     }
-    else{
+    else{ // Staff is always disabled
         return 'disabled';
     }  
  }
-function DisabledSubmitButton($position, $vc, $vcPurpose, $phase, $ApproverVC){
-    // Enable or Disable of Submit button
-    // Staff
+function DisabledSubmitButton($position, $vc, $vcPurpose, $phase, $DisableVC3button){
     if ($position == 'staff'){
         if ($vc == '3'){ // Staff refers to the manager's VC3
             return 'disabled';
         }
-        // The position is staff, and the manager's VC3 is Submitted or Unsubmitted.
-        elseif($ApproverVC != false && ($phase == 'Submitted' || $phase == 'Unsubmitted')){
+        elseif ($vc == '4'){
+            if ($DisableVC3button == 'disabled'){
+                return 'disabled';
+            }
+            elseif($phase == 'Submitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
+                return 'disabled';
+            }
+            elseif($phase == 'Unsubmitted' || $phase == 'Goals Approved'){
+                return '';
+            }
+        }
+     }
+    elseif ($position == 'manager' && $vcPurpose == 'write'){ // Manager and VC3 can be revised
+        if($phase == 'Submitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
             return 'disabled';
         }
-        else{
+        elseif($phase == 'Unsubmitted' || $phase == 'Goals Approved'){
             return '';
         }
      }
-    // Manager
-    elseif ($position == 'manager'){
-        if ($vcPurpose == 'write' && ($phase == 'Unsubmitted' || $phase == 'Goals Approved')){
-            return '';
-        }
-        else{
-            return 'disabled';
-        }
-     }
-    // Director, executive or administrator
-    else{
+    else{ // Director, executive or administrator
         return 'disabled';
      }
  }
-function DisabledSaveButton($position, $vc, $vcPurpose, $phase, $ApproverVC){
-    // Enable or Disable of Submit button
-    // Staff
-    if ($position == 'staff'){
+function DisabledSaveButton($position, $vc, $vcPurpose, $phase, $DisableVC3button){
+    if ($position == 'staff'){ // Staff
         if ($vc == '3'){ // Staff refers to the manager's VC3
             return 'disabled';
         }
-        // The position is staff, and the manager's VC3 is Submitted or Unsubmitted.
-        elseif($ApproverVC != false && ($phase == 'Submitted' || $phase == 'Unsubmitted')){
-            return 'disabled';
-        }
-        else{
-            return '';
-        }
-     }
-    // Manager
-    elseif ($position == 'manager'){
-        if ($vcPurpose == 'approval'){
-            if($phase == 'Goals Approved' || $phase == 'Self Evaluated'){
-                return '';
-            }
-            else{
+        elseif ($vc == '4'){
+            if ($DisableVC3button == 'disabled'){
                 return 'disabled';
             }
-        }
-        elseif ($vcPurpose == 'write' && ($phase == 'Unsubmitted' || $phase == 'Goals Approved')){ //$vcPurpose == 'write'
-            return '';
-        }
-        else{
-            return 'disabled';
-        }
-     }
-    else{// Director, executive or administrator
-            if($phase == 'Goals Approved' || $phase == 'Self Evaluated'){
+            elseif($phase == 'Submitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
+                return 'disabled';
+            }
+            elseif($phase == 'Unsubmitted' || $phase == 'Goals Approved'){
                 return '';
             }
-            else{
-                 return 'disabled';
-            }
         }
+     }
+    elseif ($position == 'manager' && $vcPurpose == 'write'){ // Manager and VC3 can be revised
+        if($phase == 'Submitted' || $phase == 'Self Evaluated' || $phase == 'Finalized'){
+            return 'disabled';
+        }
+        elseif($phase == 'Unsubmitted' || $phase == 'Goals Approved'){
+            return '';
+        }
+    }
+    else{
+        if($phase == 'Unsubmitted' || $phase == 'Submitted' || $phase == 'Finalized'){
+            return 'disabled';
+        }
+        elseif($phase == 'Goals Approved' || $phase == 'Self Evaluated'){
+            return '';
+        }
+    }
  }
 function DisabledGoals($DisableVC3button, $position, $vc, $vcPurpose, $phase){
     if($DisableVC3button == 'disabled'){
