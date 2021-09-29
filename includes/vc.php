@@ -89,7 +89,7 @@
  </style>
 
 <!-- Title -->
-<div style = "text-align: center"> <!--The alignment is center-->
+<div style = "text-align: center; width: 1500px"> <!--The alignment is center-->
     <h1><?php echo($vcThisPage["usersName"]);?><br>VC<?php echo($vc);?></h1>
  </div>
 <!--Error-->
@@ -111,7 +111,7 @@
 <?php
     if($ApproverVC != false && $_SESSION['usersposition'] == "staff" && $vc == '4'){
         $DisableVC3button = DisabledVC3Button($_SESSION['usersposition'], $vc, $ApproverVC);?>
-        <div style = 'text-align: center'>
+        <div style = 'text-align: center; width: 1500px'>
             <form action = 'staff.inc.php' class ="frame" method = 'post'>
                 <p>VC3<button type = 'submit' name = 'vcOpen' style = 'width:50px; height:20px' <?php echo("value = '".$year.$quarter.'3'.$_SESSION['bossemail']."' ".$DisableVC3button);?>><?php echo('Q'.$quarter);?></button></p>
                 <?php
@@ -144,7 +144,7 @@
 ?>
 
 <!--VC text boxes-->
-<section style = "text-align: center">
+<section style = "width: 1500px; text-align: center">
     <div style = 'text-align; center; position: relative; top: -40px'>
         <form action = 'vc.submit.php' method = 'post'> <!--Data are transferred to vc.inc.php-->
             <p style = "position: relative; left: -380px; top: 0px">Next One on One Meeting (when Goals Approved)</p>
