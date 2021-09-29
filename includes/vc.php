@@ -128,11 +128,11 @@
 
 <!--Disable and Values-->
 <?php
-    $DisabledCalender      = DisabledCalender($_SESSION['usersposition'], $vc, $phase, $ApproverVC);
+    $DisabledCalender      = DisabledCalender($_SESSION['usersposition'], $vc, $vcPurpose, $phase, $ApproverVC);
     $DisabledApproveButton = DisabledApproveButton($vcPurpose, $phase);
     $DisabledRejectButton  = DisabledRejectButton($vcPurpose, $phase);
-    $DisabledSaveButton    = DisabledSaveButton($_SESSION['usersposition'], $vc, $vcPurpose, $phase, $ApproverVC);
-    $DisabledSubmitButton  = DisabledSubmitButton($_SESSION['usersposition'], $vc, $vcPurpose, $phase, $ApproverVC);
+    $DisabledSaveButton    = DisabledSaveButton($_SESSION['usersposition'], $vc, $vcPurpose, $phase, $DisableVC3button);
+    $DisabledSubmitButton  = DisabledSubmitButton($_SESSION['usersposition'], $vc, $vcPurpose, $phase, $DisableVC3button);
     $DisabledGoals         = DisabledGoals($DisableVC3button, $_SESSION['usersposition'], $vc, $vcPurpose, $phase);
     $DisableWeight         = DisableWeight($DisableVC3button, $_SESSION['usersposition'], $vc, $vcPurpose, $phase);
     $DisabledResSelf       = DisabledResSelf($_SESSION['usersposition'], $vc, $vcPurpose, $phase);
