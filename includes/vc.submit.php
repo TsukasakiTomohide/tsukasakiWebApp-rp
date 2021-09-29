@@ -150,12 +150,20 @@ function SaveSubmitSQL($conn, $year, $quarter, $vc, $phase, $calender, $usersEma
     vcRemoveNullData();
 
     //Update VC data to SQL
-    if($usersEmail != $_SESSION['approveremail']){
+    if ($_SESSION['usersposition'] == 'staff'){
         $Result = vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
-    }
+     }
+    elseif($_SESSION['usersposition'] == 'manager'){
+        if ($usersEmail == $_SESSION['approveremail']){
+            $Result = vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
+        }
+        else{
+            $Result = saveVcApprover($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
+        }
+     }
     else{
         $Result = saveVcApprover($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
-    }
+     }
 
     if($Result == false){
         return false;
@@ -269,4 +277,4 @@ function approveVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, 
     elseif($_SESSION["usersposition"] == 'administrator'){  // to Administrator.php page
         header("location: ../includes/Administrator.php");
     }
-}
+ }
