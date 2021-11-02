@@ -174,7 +174,7 @@ elseif(isset($_POST['registerbutton'])){
     // Check if the same email address is saved in the database
     $Result = checkEmailDuplicate($conn, $_POST['employeeEmail']);
 
-    if (!$Result){ // The same email address already exists in the database
+    if ($Result != false){ // The same email address already exists in the database
         header("location: ../includes/admin.registerEmployee.php?error=alreadyexists");
         exit();
         }
