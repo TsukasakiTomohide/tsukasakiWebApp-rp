@@ -107,7 +107,7 @@
     <!--vc.php is shown  when a button is clicked-->
     <form action = "staff.inc.php" method = "post" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; display:inline-block;">
         <?php
-        for($year = $ac; $year >= 2020; $year--){
+        for($year = $ac+1; $year >= 2020; $year--){
 
             if(!checkVCTableExists($conn, $year)){ // Check if Table `year` exists
                 continue;
