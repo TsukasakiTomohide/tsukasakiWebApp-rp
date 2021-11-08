@@ -98,7 +98,7 @@
 <div style = "text-align: center"> <!--Transferring to staff.inc.php then vc.php when a button is clicked-->
     <form action = "staff.inc.php" method = "post">
         <?php          
-            for($year = $ac; $year >= 2020; $year--){ //For loop of each year iteration
+            for($year = $ac+1; $year >= 2020; $year--){ //For loop of each year iteration
                 
                 // Check if the employee is employed in the year
                 if(!checkVCTableExists($conn, $year)){ // Check if TABLE `year` exists
