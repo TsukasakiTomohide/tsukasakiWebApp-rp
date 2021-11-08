@@ -118,7 +118,7 @@
         // Showing user's name
         echo($_SESSION["approvername"]."<br><br>"); // It was stored on login.function.php
         
-        for($year = $ac; $year >= 2020; $year--){
+        for($year = $ac+1; $year >= 2020; $year--){
 
             if(!checkVCTableExists($conn, $year)){
                 continue;
