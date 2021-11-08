@@ -77,7 +77,7 @@
         <!--Year Select Box-->
         <select name= "year">
             <?php
-                for($year = $ac; $year >= 2020; $year--){
+                for($year = $ac+1; $year >= 2020; $year--){
                     // Set the displayed select box value
                     if($year == $displayedYear){
                         $selected = 'selected';
