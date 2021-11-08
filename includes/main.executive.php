@@ -93,7 +93,7 @@
     <form action = "staff.inc.php" method = "post" style="display:inline-block;">
         <?php
         $i = 0;
-        for($year = $ac; $year >= 2020; $year--){
+        for($year = $ac+1; $year >= 2020; $year--){
 
             if(!checkVCTableExists($conn, $year)){ // Check if Table `year` exists
                 continue;
