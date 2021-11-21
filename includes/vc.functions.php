@@ -900,7 +900,7 @@ function getUsersPassword($conn, $usersEmail){
 //*******************************************************//
 function checkEmailDuplicate($conn, $usersEmail){
 
-        $sql = "SELECT usersName FROM users WHERE usersEmail = ?;";
+        $sql = "SELECT usersName FROM [dbo].[users] WHERE usersEmail = ?;";
 
         $stmt = pdoPrepare($conn, $sql);
 
