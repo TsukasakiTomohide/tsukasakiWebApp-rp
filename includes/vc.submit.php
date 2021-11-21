@@ -35,11 +35,11 @@ if(isset($_POST["save"])){
     }
 
     if($_POST['email'] == 'Send Email'){
-        sendMail($conn, 'saved', $usersEmail, $year, $quarter, $phase, $_POST["calender"]);
+        sendMail($conn, 'saved', $usersEmail, $year, $quarter, $phase, $calender);
     }
 
     $usersInfo = $year.$quarter.$vc.$usersEmail;
-    //header("location: ../includes/vc.php?when=$usersInfo&message=saved");
+    header("location: ../includes/vc.php?when=$usersInfo&message=saved");
  }
 
 elseif(isset($_POST["submit"])){
@@ -75,7 +75,7 @@ elseif(isset($_POST["submit"])){
 
     //Send Email to the boss
     if($_POST['email'] == 'Send Email'){
-        sendMail($conn, 'submitted', $usersEmail, $year, $quarter, $phase, $_POST["calender"]);
+        sendMail($conn, 'submitted', $usersEmail, $year, $quarter, $phase, $calender);
     }
     if ($Result == false){
         header("location: ../includes/vc.php?error=stmtfailed");
