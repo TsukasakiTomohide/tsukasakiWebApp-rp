@@ -3,7 +3,6 @@
 //if(!isset($_SESSION)){
 //    session_start();
 //}
-
 require_once 'dbh.inc.php';
 include_once 'vc.functions.php';
 
@@ -40,7 +39,7 @@ if(isset($_POST["save"])){
     }
 
     $usersInfo = $year.$quarter.$vc.$usersEmail;
-    header("location: ../includes/vc.php?when=$usersInfo&message=saved");
+    //header("location: ../includes/vc.php?when=$usersInfo&message=saved");
  }
 
 elseif(isset($_POST["submit"])){
