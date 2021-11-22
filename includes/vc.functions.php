@@ -409,7 +409,7 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
         sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
         sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
 */
-        return true;
+        return $usersName;
 
       } catch (Exception $e) {
         // エラーの場合
@@ -901,7 +901,7 @@ function getUsersPassword($conn, $usersEmail){
 //*******************************************************//
 function checkEmailDuplicate($conn, $usersEmail){
 
-        $sql = "SELECT usersName FROM [dbo].[users] WHERE usersEmail = ?;";
+        $sql = "SELECT usersName FROM [dbo].[users] WHERE usersEmail = '?';";
 
         $stmt = pdoPrepare($conn, $sql);
 
