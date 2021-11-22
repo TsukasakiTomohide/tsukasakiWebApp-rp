@@ -396,7 +396,7 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
 
     try {
         $usersName = checkEmailDuplicate($conn, $usersEmail);
-        /*
+        
         $subject     = $usersName."'s VC was ".$state;
 
         if($phase == 'Goals Approved'){
@@ -408,8 +408,8 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
 
         sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
         sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
-*/
-        return $usersName;
+
+        return true;
 
       } catch (Exception $e) {
         // エラーの場合
