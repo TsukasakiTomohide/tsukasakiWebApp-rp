@@ -35,7 +35,8 @@ if(isset($_POST["save"])){
     }
 
     if($_POST['email'] == 'Send Email'){
-        sendMail($conn, 'saved', $usersEmail, $year, $quarter, $phase, $calender);
+        $name = sendMail($conn, 'saved', $usersEmail, $year, $quarter, $phase, $calender);
+        echo($name);
     }
 
     $usersInfo = $year.$quarter.$vc.$usersEmail;
