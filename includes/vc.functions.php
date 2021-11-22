@@ -407,7 +407,9 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
         }
 
         sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
-        sendMailSendGrid($conn,$_SESSION["bossemail"], $_SESSION["usersboss"], $subject, $body);
+        if($state != 'saved'){
+            sendMailSendGrid($conn,$_SESSION["bossemail"], $_SESSION["usersboss"], $subject, $body);
+        }
 
         return true;
 
