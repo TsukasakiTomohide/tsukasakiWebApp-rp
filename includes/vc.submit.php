@@ -36,11 +36,10 @@ if(isset($_POST["save"])){
 
     if($_POST['email'] == 'Send Email'){
         $name = sendMail($conn, 'saved', $usersEmail, $year, $quarter, $phase, $calender);
-        echo($name);
     }
 
     $usersInfo = $year.$quarter.$vc.$usersEmail;
-    //header("location: ../includes/vc.php?when=$usersInfo&message=saved");
+    header("location: ../includes/vc.php?when=$usersInfo&message=saved");
  }
 
 elseif(isset($_POST["submit"])){
