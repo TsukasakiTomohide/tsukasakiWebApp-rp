@@ -406,8 +406,8 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
             $body = "$usersName's VC of Q$quarter, $year was $state. Please check the document."; 
         }
 
-        sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
-        sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
+        //sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
+        //sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
 
         return true;
 
