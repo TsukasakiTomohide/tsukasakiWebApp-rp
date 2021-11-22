@@ -408,7 +408,7 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
         sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
         sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
 
-        return true;
+        return $usersName;
 
       } catch (Exception $e) {
         // エラーの場合
