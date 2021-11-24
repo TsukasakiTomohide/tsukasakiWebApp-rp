@@ -116,7 +116,7 @@
                 // All the buttons of the employee in the year are desplayed including VC3 and VC4
                 foreach($staffVCs as $singleVC){ // This loop is within one year
                     $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
-                    buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $singleVC['vc']);
+                    buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $singleVC['vc'], $singleVC['TotalEval']);
                     echo (' ');
                 }
                 echo ('<br>');
