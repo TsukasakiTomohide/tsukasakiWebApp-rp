@@ -191,7 +191,7 @@ function rejectVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
     }
     elseif($phase == 'Finalized'){
         $phase = 'Self Evaluated';
-        $state = 'Do not send email';
+        $state = 'returned';
     }
 
     // Change COLUMN `phase` in TABLE `year`
