@@ -136,7 +136,7 @@
                 }
 
                 $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
-                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], '3');
+                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], '3', $singleVC['TotalEval']);
 
                 echo (' ');
                 $vc = $singleVC['vc'];
