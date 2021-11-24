@@ -139,7 +139,7 @@ function vcUpdate($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
     }
     elseif($phase == 'Self Evaluated'){
         for($i = 1; $i <= 5; $i++){
-            $param[$i] = "finalEval_$i = ?, Performance_$i = ? ";
+            $param[$i] = "finalEval_$i = ?, Performance_$i = ?";
         }
         $sql = "Update [dbo].[$year] SET $param[1], $param[2], $param[3], $param[4], $param[5] WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
     }
@@ -205,7 +205,7 @@ function saveVcApprover($conn, $year, $quarter, $vc, $phase, $calender, $usersEm
         for($i = 1; $i <= 5; $i++){
             $param[$i] = "finalEval_$i = ?, Performance_$i = ?";
         }
-        $sql = "Update [dbo].[$year] SET $param[1], $param[2], $param[3], $param[4], $param[5] WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
+        $sql = "Update [dbo].[$year] SET $param[1], $param[2], $param[3], $param[4], $param[5], TotalEval = ? WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
     }
     $stmt = pdoPrepare($conn, $sql);
 
@@ -222,7 +222,8 @@ function saveVcApprover($conn, $year, $quarter, $vc, $phase, $calender, $usersEm
             pdoBind($stmt, 2*$i+1, $vcData["Eval_".($i+1)], PDO::PARAM_STR);
             pdoBind($stmt, 2*$i+2, $vcData["Per_".($i+1)], PDO::PARAM_STR);
         }
-        $i = 11;
+        pdoBind($stmt, 11, $vcData["TotalEval"], PDO::PARAM_STR);
+        $i = 12;
     }
     pdoBind($stmt, $i, $usersEmail, PDO::PARAM_STR);
     pdoBind($stmt, $i+1, $quarter, PDO::PARAM_INT);
@@ -288,9 +289,9 @@ function rejectUpdateVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEm
 function approveUpdateVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData){
     for($i = 1; $i <= 5; $i++){
 
-        $param[$i] = "finalEval_$i = ?, Performance_$i = ? ";
+        $param[$i] = "finalEval_$i = ?, Performance_$i = ?";
     }
-    $sql = "Update [dbo].[$year] SET $param[1], $param[2], $param[3], $param[4], $param[5] WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
+    $sql = "Update [dbo].[$year] SET $param[1], $param[2], $param[3], $param[4], $param[5], TotalEval = ? WHERE usersEmail = ? AND quarter = ? AND vc = ?;";
 
     $stmt = pdoPrepare($conn, $sql);
 
@@ -299,7 +300,8 @@ function approveUpdateVC($conn, $year, $quarter, $vc, $phase, $calender, $usersE
             pdoBind($stmt, 2*$i+1, $vcData["Eval_".($i+1)], PDO::PARAM_STR);
             pdoBind($stmt, 2*$i+2, $vcData["Per_".($i+1)], PDO::PARAM_STR);
         }
-        $i = 11;
+        pdoBind($stmt, 11, $vcData["TotalEval"], PDO::PARAM_STR);
+        $i = 12;
     }
 
     pdoBind($stmt, $i, $usersEmail, PDO::PARAM_STR);
@@ -487,25 +489,30 @@ function phaseChange($conn, $year, $quarter, $vc, $phase, $usersEmail){
     return $result;
  }
 
-function buttonValueColor($phase, $name, $quarter, $vc){ 
+function buttonValueColor($phase, $name, $quarter, $vc, $TotalEval){ 
     if($phase == 'Unsubmitted'){        // White
         $bcolor = "#FFFAFA";
+        $TotalEval = '';
     }
     elseif($phase == 'Submitted'){      // Red
         $bcolor = "#FFC1FF";
+        $TotalEval = '';
     }
     elseif($phase == 'Goals Approved'){       // Yello
         $bcolor = "#FFFFC1";
+        $TotalEval = '';
     }
     elseif($phase == 'Self Evaluated'){ // Green
         $bcolor = "#E0FFC1";
+        $TotalEval = '';
     }
     elseif($phase == 'Finalized'){      // Blue
         $bcolor = "#C1FFFF";
+        $TotalEval = ' '.$TotalEval;
     }
 
     echo <<<__HTML__
-    <button type = "submit" name = "vcOpen" style="width:180px;height:50px;background-color:$bcolor" value=$name>VC$vc-Q$quarter $phase</button>
+    <button type = "submit" name = "vcOpen" style="width:180px;height:50px;background-color:$bcolor" value=$name>VC$vc-Q$quarter $phase.$TotalEval</button>
     __HTML__;
  }
 
@@ -590,6 +597,29 @@ function setActInactEmployee($conn, $email, $act_inact){
 // *******************************************************//
 // *********************** VC.php ***********************//createNewRow
 // *******************************************************//
+function SelectTotalEval($employeeInfo){
+    $SelectTotalfEval = array();
+    $SelectTotalfEval = array_fill(0, 5, ' ');
+
+    if($employeeInfo['TotalEval'] =="D"){
+        $SelectTotalfEval[0] = 'selected';
+    }
+    elseif($employeeInfo['TotalEval'] =="C"){
+        $SelectTotalfEval[1] = 'selected';
+    }
+    elseif($employeeInfo['TotalEval'] =="B"){
+        $SelectTotalfEval[2] = 'selected';
+    }
+    elseif($employeeInfo['TotalEval'] =="A"){
+        $SelectTotalfEval[3] = 'selected';
+    }
+    else{
+        $SelectTotalfEval[4] = 'selected';
+    }
+
+    return $SelectTotalfEval;
+ }
+
 function SelectSelfEval($employeeInfo){
     $SelectSelfEval = array();
     for($i = 0; $i < 5; $i++){
@@ -684,6 +714,15 @@ function DisabledCalender($usersposition, $vc, $vcPurpose, $phase, $ApproverVC){
             return '';
         }
 
+    }
+ }
+
+function DisabledTotalEval($vcPurpose, $phase){
+    if($vcPurpose == 'approval' && $phase == 'Self Evaluated'){
+        return '';
+    }
+    else{
+        return 'disabled';
     }
  }
 function vcTimestamp($OneOnOne, $phase){
@@ -1030,15 +1069,16 @@ function createNewVcTable($conn, $year){
     $columnName[3] = 'vc';
     $columnName[4] = 'phase';
     $columnName[5] = 'OneOnOne';
+    $columnName[6] = 'TotalEval';
     for($i = 0; $i <= 4; $i ++){
-        $columnName[6 + 8 * $i]  = 'vc23_'.($i + 1);
-        $columnName[7 + 8 * $i]  = 'annualTarget_'.($i + 1);
-        $columnName[8 + 8 * $i]  = 'weight_'.($i + 1);
-        $columnName[9 + 8 * $i]  = 'quarterPlan_'.($i + 1);
-        $columnName[10 + 8 * $i] = 'quarterResult_'.($i + 1);
-        $columnName[11 + 8 * $i] = 'selfEval_'.($i + 1);
-        $columnName[12 + 8 * $i] = 'finalEval_'.($i + 1);
-        $columnName[13 + 8 * $i] = 'Performance_'.($i + 1);
+        $columnName[7 + 8 * $i]  = 'vc23_'.($i + 1);
+        $columnName[8 + 8 * $i]  = 'annualTarget_'.($i + 1);
+        $columnName[9 + 8 * $i]  = 'weight_'.($i + 1);
+        $columnName[10 + 8 * $i]  = 'quarterPlan_'.($i + 1);
+        $columnName[11 + 8 * $i] = 'quarterResult_'.($i + 1);
+        $columnName[12 + 8 * $i] = 'selfEval_'.($i + 1);
+        $columnName[13 + 8 * $i] = 'finalEval_'.($i + 1);
+        $columnName[14 + 8 * $i] = 'Performance_'.($i + 1);
      }
 
     $Datatype[0] = 'varchar(50)';
@@ -1047,15 +1087,16 @@ function createNewVcTable($conn, $year){
     $Datatype[3] = "int"; // phase
     $Datatype[4] = "varchar(14) NOT NULL DEFAULT 'Unsubmitted'";
     $Datatype[5] = 'varchar(10)';
+    $Datatype[6] = "varchar(1) NOT NULL DEFAULT ' '";
     for($i = 0; $i <= 4; $i ++){
-        $Datatype[6 + 8 * $i]  = 'varchar(100)';
         $Datatype[7 + 8 * $i]  = 'varchar(100)';
-        $Datatype[8 + 8 * $i]  = 'int';
-        $Datatype[9 + 8 * $i]  = 'varchar(300)';
-        $Datatype[10 + 8 * $i] = 'varchar(1000)';
-        $Datatype[11 + 8 * $i] = "varchar(1)";
+        $Datatype[8 + 8 * $i]  = 'varchar(100)';
+        $Datatype[9 + 8 * $i]  = 'int';
+        $Datatype[10 + 8 * $i]  = 'varchar(300)';
+        $Datatype[11 + 8 * $i] = 'varchar(1000)';
         $Datatype[12 + 8 * $i] = "varchar(1)";
-        $Datatype[13 + 8 * $i] = 'varchar(1000)';
+        $Datatype[13 + 8 * $i] = "varchar(1)";
+        $Datatype[14 + 8 * $i] = 'varchar(1000)';
      }
     
     $sql = "CREATE TABLE [dbo].[$year] (";
