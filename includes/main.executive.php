@@ -134,7 +134,7 @@
 
                 // Create a button, its color and letters in it
                 $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
-                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $singleVC['vc']);
+                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $singleVC['vc'], $singleVC['TotalEval']);
 
                 echo (' ');
                 $vc = $singleVC['vc'];
