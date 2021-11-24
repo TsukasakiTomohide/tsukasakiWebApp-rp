@@ -142,7 +142,7 @@
                         }
                     }
                     $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
-                    buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $singleVC['vc']);
+                    buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $singleVC['vc'], $singleVC['TotalEval']);
                     $vc = $singleVC['vc'];
                     $i = $i+1;
                 }
@@ -179,7 +179,7 @@
                 }
 
                 $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
-                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], '4');
+                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], '4', $singleVC['TotalEval']);
 
                 echo (' ');
 
