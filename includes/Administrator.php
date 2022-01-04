@@ -141,7 +141,7 @@
                         }
                     }
                     $name = $displayedYear.$eachEmployeeInfo['quarter'].$eachEmployeeInfo['vc'].$singleEmployee['usersEmail'];
-                    buttonValueColor($eachEmployeeInfo['phase'], $name, $eachEmployeeInfo['quarter'], $eachEmployeeInfo['vc']);
+                    buttonValueColor($eachEmployeeInfo['phase'], $name, $eachEmployeeInfo['quarter'], $eachEmployeeInfo['vc'], $eachEmployeeInfo['TotalEval']);
                     $vc = $eachEmployeeInfo['vc'];
                     $i = $i+1;
                 }
