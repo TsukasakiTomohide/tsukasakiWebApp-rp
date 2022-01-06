@@ -7,14 +7,15 @@
     // }
 
     /* Employee information of this vc. The info comes from the URL.
-       $year, $quarter, $vc and $usersEmail */
+       $year, $quarter, $vc */
     if(isset($_GET['when'])){
         $year       = substr($_GET['when'], 0, 4);
         $quarter    = substr($_GET['when'], 4, 1);
         $vc         = substr($_GET['when'], 5, 1);
-        $usersEmail = substr($_GET['when'], 6);     // This VC's employee email
      }
     
+    $usersEmail = $_SESSION['VcOwnerEmail'];// This VC's employee email
+
     ////////////////////////////////////////
     //// Get this VC's employee VC data ////
     ////////////////////////////////////////
@@ -96,13 +97,16 @@
 <!--Error-->
 <?php
     if(isset($_GET['error']) && $_GET['error'] == 'stmtfailed'){
-        echo ('<p style = "text-align: center">Something went wrong. Try again.</p>');
+        echo ('<p style = "text-align: center"><font color = "red">Something went wrong. Try again.</font></p>');
      }
     elseif(isset($_GET['message']) && $_GET['message'] == 'saved'){
-        echo ('<p style = "text-align: center">The VC was successfully saved.</p>');
+        echo ('<p style = "text-align: center"><font color = "red">The VC was successfully saved.</font></p>');
      }
     elseif(isset($_GET['error']) && $_GET['error'] == 'timestamp'){
-        echo ('<p style = "text-align: center">"The next one-on-one meeting is not fixed.</p>');
+        echo ('<p style = "text-align: center"><font color = "red">The next one-on-one meeting is not fixed.</font></p>');
+     }
+    elseif(isset($_GET['error']) && $_GET['error'] == 'weightNot100'){
+        echo ('<p style = "text-align: center"><font color = "red">The total weight from Goal 1 to Goal 5 has to be 100.</font></p>');
      }
     else{
         echo('<p><br></p>');
@@ -110,7 +114,7 @@
 ?>
 <!-- VC3 Reference buttons -->
 <?php
-    if($ApproverVC != false && $_SESSION['usersposition'] == "staff" && $vc == '4'){
+    if($ApproverVC != false && $_SESSION['usersposition'] == "staff" && $vc == '4'){ //staff & vc4
         $DisableVC3button = DisabledVC3Button($_SESSION['usersposition'], $vc, $ApproverVC);?>
         <div style = 'text-align: center; width: 1500px'>
             <form action = 'staff.inc.php' class ="frame" method = 'post'>
@@ -160,6 +164,12 @@
             <button type = 'submit' name = 'submit'   value = "<?php echo($param); ?>"  <?php echo($DisabledSubmitButton);?>  style = "position: relative; left: -250px; top: 0px; width: 100px; height: 60px">Submit</button>
             <button type = "submit" name = "toMain"   value = "<?php echo($mainPage);?>"                                      style = "position: relative; left: -200px; top: 0px; width: 160px; height: 60px"><?php echo($mainPageName);?></button>
             <p style = "position: relative; left: 430px; top: -55px">Total Evaluation</p>
+            <?php if($_SESSION['usersposition'] == "staff" && $vc == '3'){
+                $SelectTotalEval[0] = '';
+                $SelectTotalEval[1] = '';
+                $SelectTotalEval[2] = '';
+                $SelectTotalEval[3] = 'selected';
+            } ?>
             <select                 name = 'TotalEval'                                  <?php echo($DisabledTotalEval);?>     style = "position: relative; left: 510px; top: -94px; width: 160x;  height: 30px">
                         <option value = 'D' <?php echo($SelectTotalEval[0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectTotalEval[1]); ?>>C</option>
@@ -168,16 +178,32 @@
                         <option value = ' ' <?php echo($SelectTotalEval[4]); ?>> </option>
                 </select>
             
-            <?php for($i = 0; $i < 5; $i++){ ?>
+            <?php for($i = 0; $i < 5; $i++){ 
+                if($_SESSION['usersposition'] == "staff" && $vc == '3')
+                {
+                    $vcThisPage["weight_".($i+1)] = '';
+                    $SelectSelfEval[$i][0] = '';
+                    $SelectSelfEval[$i][1] = '';
+                    $SelectSelfEval[$i][2] = '';
+                    $SelectSelfEval[$i][3] = 'selected';
+                    $SelectEval[$i][0] = '';
+                    $SelectEval[$i][1] = '';
+                    $SelectEval[$i][2] = '';
+                    $SelectEval[$i][3] = 'selected';
+                    $vcThisPage["quarterResult_".($i+1)] = '';
+                    $vcThisPage["Performance_".($i+1)] = '';
+                }?>
                 <h3 style = "position: relative; top: -70px">Goal <?php echo($i+1); ?></h3>
                 <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>'  value = 'VC<?php echo($vc-1);?> Solutions'             maxlength = '300' disabled                          style='position:relative;top: -85px;width:348px;left: 56px'>
                 <input type = 'text'   name = 'Target_<?php echo($i+1); ?>t' value = 'Annual Target'                                maxlength = '300' disabled                          style='position:relative;top: -85px;width:348px;left: 56px'>
                 <input type = 'text'   name = 'Plan_<?php   echo($i+1); ?>t' value = 'Quarter Plans'                                maxlength = '300' disabled                          style='position:relative;top: -85px;width:298px;left: 56px'>
                 <input type = 'text'   name = 'Wei_<?php    echo($i+1); ?>t' value = 'Weight'                                       maxlength = '300' disabled                          style='position:relative;top: -85px;width:100px;left: 56px'>
                 <input type = 'text'   name = 'Self_<?php   echo($i+1); ?>t' value = 'Self Evaluation'                              maxlength = '300' disabled                          style='position:relative;top: -3px;width:100px;left:-56px'><br>
+                
                 <textarea              name = 'vc23_<?php   echo($i+1); ?>'                                　                       maxlength = '300' <?php echo($DisabledGoals);?>     style='position:relative;top: -85px;width:350px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["vc23_".($i+1)]);?></textarea>              
                 <textarea              name = 'Target_<?php echo($i+1); ?>'                                                         maxlength = '300' <?php echo($DisabledGoals);?>     style='position:relative;top: -85px;width:350px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["annualTarget_".($i+1)]);?></textarea>   
                 <textarea              name = 'Plan_<?php   echo($i+1); ?>'                                                         maxlength = '300' <?php echo($DisabledGoals);?>     style='position:relative;top: -85px;width:300px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["quarterPlan_".($i+1)]);?></textarea>  
+
                 <input type = 'number' name = 'Wei_<?php    echo($i+1); ?>'  value = '<?php echo($vcThisPage["weight_".($i+1)]);?>' maxlength = '300' <?php echo($DisableWeight);?>     style='position:relative;top: -85px;width:100px;left:168px;height: 50px;vertical-align:top;'        max='100' min='0'>
                 <select                name = 'Self_<?php   echo($i+1); ?>'                                                                         <?php echo($DisabledResSelf);?>     style='position:relative;top: -3px;width:108px;left: 56px;height: 50px;vertical-align:top'>
                         <option value = 'D' <?php echo($SelectSelfEval[$i][0]); ?>>D</option>
