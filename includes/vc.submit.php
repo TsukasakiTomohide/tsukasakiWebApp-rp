@@ -42,10 +42,19 @@ if(isset($_POST["save"])){
     header("location: ../includes/vc.php?when=$usersInfo&message=saved");
  }
 
-elseif(isset($_POST["submit"])){
+elseif(isset($_POST["submit"])){    
+
+    $totalWeight = $_POST['Wei_1'] + $_POST['Wei_2'] + $_POST['Wei_3'] + $_POST['Wei_4'] + $_POST['Wei_5'];
+
     $year       = substr($_POST["submit"], 0, 4);
     $quarter    = substr($_POST["submit"], 4, 1);
     $vc         = substr($_POST["submit"], 5, 1);
+
+    if ($totalWeight != 100){
+        header("location: ../includes/vc.php?when=$year$quarter$vc&error=weightNot100");
+        exit();
+    }
+
     $pos        = strpos($_POST["submit"], "%");
     $phase      = substr($_POST["submit"], 6, $pos - 6);
     $usersEmail = substr($_POST["submit"], $pos+1);
@@ -141,7 +150,17 @@ elseif(isset($_POST["Reject"])){
  }
 
 elseif(isset($_POST['toMain'])){
-    header("location: ".$_POST['toMain']);
+    $pos = strpos($_POST['toMain'], 'when='); //staff goes back from the boss's VC3
+    if($pos != false)
+    {
+        $url = substr($_POST['toMain'], 0, $pos+11);
+        $_SESSION['VcOwnerEmail'] = substr($_POST['toMain'], $pos+11);
+    }
+    else
+    {
+        $url = $_POST['toMain'];
+    }
+    header("location: ".$url);
     exit();
  }
 
