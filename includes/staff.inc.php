@@ -9,7 +9,8 @@
     // A VC button is clicked
     if(isset($_POST['vcOpen'])){
         // $vcName includes year + quarter + vc + usersEmail
-        $vcName = $_POST['vcOpen']; // It comes from buttonValueColor() of vc.functions.php
+        $vcName = substr($_POST['vcOpen'], 0, 6); // It comes from buttonValueColor() of vc.functions.php
+        $_SESSION['VcOwnerEmail'] = substr($_POST['vcOpen'], 6);
         header("location: ../includes/vc.php?when=$vcName");
      }
 
