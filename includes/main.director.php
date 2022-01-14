@@ -114,9 +114,11 @@
             }
 
             $subordinatesVCs_3 = managerVcInfo($conn, $year, $_SESSION["approveremail"], '3'); // This function is in vc.functions.php 0 means all.
+            $count3 = count($subordinatesVCs_3);
             $subordinatesVCs_4 = managerVcInfo($conn, $year, $_SESSION["approveremail"], '4'); // This function is in vc.functions.php 0 means all.
 
             $subordinatesVCs = array_merge($subordinatesVCs_3, $subordinatesVCs_4);
+
             // No data in the table
             if ($subordinatesVCs == false){ // The employee was not hired in $year
                 continue;
@@ -128,6 +130,7 @@
             $comp = "";
             $vc = "";
             echo (' ');
+            $i = 0;
             foreach($subordinatesVCs as $singleVC){
                 // If the person appears at the first time, type the name
                 if($comp != $singleVC['usersName']){
@@ -138,11 +141,21 @@
                 }
 
                 $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
-                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], '3', $singleVC['TotalEval']);
+
+                if($i < $count3){
+                    $quarter = 3;
+                }
+                else{
+                    $quarter = 4;
+                }
+                buttonValueColor($singleVC['phase'], $name, $singleVC['quarter'], $quarter, $singleVC['TotalEval']);
+
 
                 echo (' ');
                 $vc = $singleVC['vc'];
                 $comp = $singleVC['usersName'];
+
+                $i = $i + 1;
             }
         }
         ?>
