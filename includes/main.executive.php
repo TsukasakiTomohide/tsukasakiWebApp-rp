@@ -98,6 +98,7 @@
             if(!checkVCTableExists($conn, $year)){ // Check if Table `year` exists
                 continue;
             }
+
             $subordinatesVCs = managerVcInfo($conn, $year, $_SESSION["approveremail"], 0); // $vc == 0 means all VCs
             
             // No data in the table
