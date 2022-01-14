@@ -114,10 +114,20 @@
             }
 
             $subordinatesVCs_3 = managerVcInfo($conn, $year, $_SESSION["approveremail"], '3'); // This function is in vc.functions.php 0 means all.
-            $count3 = count($subordinatesVCs_3);
             $subordinatesVCs_4 = managerVcInfo($conn, $year, $_SESSION["approveremail"], '4'); // This function is in vc.functions.php 0 means all.
 
-            $subordinatesVCs = array_merge($subordinatesVCs_3, $subordinatesVCs_4);
+            if ($subordinatesVCs_3 == false){
+                $count3 = 0;
+                if($subordinatesVCs_4 == false){
+                    continue;
+                }
+                $subordinatesVCs = $subordinatesVCs_4;
+
+            }
+            else{
+                $count3 = count($subordinatesVCs_3);
+                $subordinatesVCs = array_merge($subordinatesVCs_3, $subordinatesVCs_4);
+            }
 
             // No data in the table
             if ($subordinatesVCs == false){ // The employee was not hired in $year
