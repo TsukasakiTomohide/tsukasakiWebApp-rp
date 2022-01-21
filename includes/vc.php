@@ -194,17 +194,17 @@
                     $vcThisPage["Performance_".($i+1)] = '';
                 }?>
                 <h3 style = "position: relative; top: -60px">Goal <?php echo($i+1); ?></h3>
-                <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>'  value = 'VC<?php echo($vc-1);?> Solutions'             maxlength = '999' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
-                <input type = 'text'   name = 'Target_<?php echo($i+1); ?>t' value = 'Annual Target'                                maxlength = '999' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
-                <input type = 'text'   name = 'Plan_<?php   echo($i+1); ?>t' value = 'Quarter Plans'                                maxlength = '999' disabled                          style='position:relative;top: -75px;width:298px;left: 56px'>
-                <input type = 'text'   name = 'Wei_<?php    echo($i+1); ?>t' value = 'Weight'                                       maxlength = '999' disabled                          style='position:relative;top: -75px;width:100px;left: 56px'>
-                <input type = 'text'   name = 'Self_<?php   echo($i+1); ?>t' value = 'Self Evaluation'                              maxlength = '999' disabled                          style='position:relative;top: 7px;width:100px;left:-56px'><br>
+                <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>'  value = 'VC<?php echo($vc-1);?> Solutions'             maxlength = '956' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
+                <input type = 'text'   name = 'Target_<?php echo($i+1); ?>t' value = 'Annual Target'                                maxlength = '956' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
+                <input type = 'text'   name = 'Plan_<?php   echo($i+1); ?>t' value = 'Quarter Plans'                                maxlength = '956' disabled                          style='position:relative;top: -75px;width:298px;left: 56px'>
+                <input type = 'text'   name = 'Wei_<?php    echo($i+1); ?>t' value = 'Weight'                                       maxlength = '956' disabled                          style='position:relative;top: -75px;width:100px;left: 56px'>
+                <input type = 'text'   name = 'Self_<?php   echo($i+1); ?>t' value = 'Self Evaluation'                              maxlength = '956' disabled                          style='position:relative;top: 7px;width:100px;left:-56px'><br>
                 
-                <textarea              name = 'vc23_<?php   echo($i+1); ?>'                                　                       maxlength = '999' <?php echo($DisabledGoals);?>     style='position:relative;top: -75px;width:350px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["vc23_".($i+1)]);?></textarea>              
-                <textarea              name = 'Target_<?php echo($i+1); ?>'                                                         maxlength = '999' <?php echo($DisabledGoals);?>     style='position:relative;top: -75px;width:350px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["annualTarget_".($i+1)]);?></textarea>   
-                <textarea              name = 'Plan_<?php   echo($i+1); ?>'                                                         maxlength = '999' <?php echo($DisabledGoals);?>     style='position:relative;top: -75px;width:300px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["quarterPlan_".($i+1)]);?></textarea>  
+                <textarea              name = 'vc23_<?php   echo($i+1); ?>'                                　                       maxlength = '956' <?php echo($DisabledGoals);?>     style='position:relative;top: -75px;width:350px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["vc23_".($i+1)]);?></textarea>              
+                <textarea              name = 'Target_<?php echo($i+1); ?>'                                                         maxlength = '956' <?php echo($DisabledGoals);?>     style='position:relative;top: -75px;width:350px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["annualTarget_".($i+1)]);?></textarea>   
+                <textarea              name = 'Plan_<?php   echo($i+1); ?>'                                                         maxlength = '956' <?php echo($DisabledGoals);?>     style='position:relative;top: -75px;width:300px;left:168px;height:200px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["quarterPlan_".($i+1)]);?></textarea>  
 
-                <input type = 'number' name = 'Wei_<?php    echo($i+1); ?>'  value = '<?php echo($vcThisPage["weight_".($i+1)]);?>' maxlength = '999' <?php echo($DisableWeight);?>     style='position:relative;top: -75px;width:100px;left:168px;height: 50px;vertical-align:top;'        max='100' min='0'>
+                <input type = 'number' name = 'Wei_<?php    echo($i+1); ?>'  value = '<?php echo($vcThisPage["weight_".($i+1)]);?>' maxlength = '956' <?php echo($DisableWeight);?>     style='position:relative;top: -75px;width:100px;left:168px;height: 50px;vertical-align:top;'        max='100' min='0'>
                 <select                name = 'Self_<?php   echo($i+1); ?>'                                                                         <?php echo($DisabledResSelf);?>     style='position:relative;top: 7px;width:108px;left: 56px;height: 50px;vertical-align:top'>
                         <option value = 'D' <?php echo($SelectSelfEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectSelfEval[$i][1]); ?>>C</option>
@@ -212,7 +212,7 @@
                         <option value = 'A' <?php echo($SelectSelfEval[$i][3]); ?>>A</option>
                         <option value = ' ' <?php echo($SelectSelfEval[$i][4]); ?>> </option>
                 </select>
-                <input type = 'text'   name = 'Eval_<?php   echo($i+1); ?>t' value = 'Evaluation'                                 maxlength = '999' disabled                            style='position:relative;top:61px;width:100px;left:-56px'>
+                <input type = 'text'   name = 'Eval_<?php   echo($i+1); ?>t' value = 'Evaluation'                                 maxlength = '956' disabled                            style='position:relative;top:61px;width:100px;left:-56px'>
                 <select                name = 'Eval_<?php   echo($i+1); ?>'                                                                         <?php echo($DisabledFinalEval);?>   style='position:relative;top:81px;width:108px;left:-168px;height: 50px;vertical-align:top'>
                         <option value = 'D' <?php echo($SelectEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectEval[$i][1]); ?>>C</option>
@@ -220,10 +220,10 @@
                         <option value = 'A' <?php echo($SelectEval[$i][3]); ?>>A</option>
                         <option value = ' ' <?php echo($SelectEval[$i][4]); ?>> </option>
                 </select><br><br>
-                <input type = 'text'   name = 'Res_<?php    echo($i+1); ?>t' value = 'Results of the quarter'                     maxlength = '999' disabled                            style='position:relative;top:-87px;width:568px'>
-                <input type = 'text'   name = 'Per_<?php    echo($i+1); ?>t' value = 'Performance of the staff'                   maxlength = '999' disabled                            style='position:relative;top:-87px;width:568px'>
-                <textarea              name = 'Res_<?php    echo($i+1); ?>'                                                       maxlength = '999' <?php echo($DisabledResSelf);?>     style='position:relative;top:-87px;width:570px;height:240px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["quarterResult_".($i+1)]);?></textarea>
-                <textarea              name = 'Per_<?php    echo($i+1); ?>'                                                       maxlength = '999' <?php echo($DisabledPerformance);?> style='position:relative;top:-87px;width:570px;height:240px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["Performance_".($i+1)]);?></textarea>
+                <input type = 'text'   name = 'Res_<?php    echo($i+1); ?>t' value = 'Results of the quarter'                     maxlength = '956' disabled                            style='position:relative;top:-87px;width:568px'>
+                <input type = 'text'   name = 'Per_<?php    echo($i+1); ?>t' value = 'Performance of the staff'                   maxlength = '956' disabled                            style='position:relative;top:-87px;width:568px'>
+                <textarea              name = 'Res_<?php    echo($i+1); ?>'                                                       maxlength = '956' <?php echo($DisabledResSelf);?>     style='position:relative;top:-87px;width:570px;height:240px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["quarterResult_".($i+1)]);?></textarea>
+                <textarea              name = 'Per_<?php    echo($i+1); ?>'                                                       maxlength = '956' <?php echo($DisabledPerformance);?> style='position:relative;top:-87px;width:570px;height:240px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["Performance_".($i+1)]);?></textarea>
             <?php } ?>
             </form>
         </div>
