@@ -1089,10 +1089,10 @@ function createNewVcTable($conn, $year){
     $Datatype[5] = 'varchar(10)';
     $Datatype[6] = "varchar(1) NOT NULL DEFAULT ' '";
     for($i = 0; $i <= 4; $i ++){
-        $Datatype[7 + 8 * $i]  = 'varchar(100)';
-        $Datatype[8 + 8 * $i]  = 'varchar(100)';
+        $Datatype[7 + 8 * $i]  = 'varchar(1000)';
+        $Datatype[8 + 8 * $i]  = 'varchar(1000)';
         $Datatype[9 + 8 * $i]  = 'int';
-        $Datatype[10 + 8 * $i]  = 'varchar(300)';
+        $Datatype[10 + 8 * $i]  = 'varchar(1000)';
         $Datatype[11 + 8 * $i] = 'varchar(1000)';
         $Datatype[12 + 8 * $i] = "varchar(1)";
         $Datatype[13 + 8 * $i] = "varchar(1)";
