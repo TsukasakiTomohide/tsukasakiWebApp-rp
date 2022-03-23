@@ -39,7 +39,7 @@
         header('Content-Disposition: attachment; filename="'.$filename.'"');
           
         // Read the file and start download
-        readfile($filepath);
+        // readfile($filepath);
     
         exit;
         }
