@@ -457,7 +457,7 @@ function getSendGridApiKey($conn){
     else{
         return $row['sendgridApiKey'];
     }
-}
+ }
 function phaseChange($conn, $year, $quarter, $vc, $phase, $usersEmail){
 
     if($phase == 'Unsubmitted'){
@@ -1206,4 +1206,56 @@ function pdoExecute($stmt){
  }
 function pdoFetch($stmt){
     return $stmt->fetch(PDO::FETCH_ASSOC);
+ }
+
+function getBackup($conn, $year){
+    $sql = "SELECT * FROM [dbo].[$year]";
+    $stmt = pdoPrepare($conn, $sql);
+    $results = pdoExecute($stmt);
+
+    // 書き込みモードでファイルを開く
+    $fp = fopen("test.txt", "w");
+
+    // Adding Column Header
+    $data = "\r\nName\tEmail\tQuarter\tVC\tPhase\tTotal Eval\t";
+        for ($i = 1; $i <= 5; $i ++){
+            $data = $data."Self Eval_".$i."\t"."Final Eval_".$i."\t";
+        }
+        for ($i = 1; $i <= 5; $i ++){
+            $data = $data."Boss's Plan_".$i."\t"."Annual Target_".$i."\t"."Quarter Plan_".$i."\t"."Quarter Result_".$i."\t"."Performance_".$i."\t";
+        }
+    fputs($fp, $data);
+
+    $search = array("\n", "\r","\t");
+    $replace = array("", "","");
+    while($row = pdoFetch($stmt)){
+        // ファイルに書き込む
+
+        $data = "\r\n".
+                $row['usersName']."\t".
+                $row['usersEmail']."\t".
+                $row['quarter']."\t".
+                $row['vc']."\t".
+                $row['phase']."\t".
+                $row['TotalEval']."\t";
+                for ($i = 1; $i <= 5; $i ++){
+                    $data = $data.$row['selfEval_'.$i]."\t".$row['finalEval_'.$i]."\t";
+                }
+                fputs($fp, $data);
+
+                for ($i = 1; $i <= 5; $i ++){
+                    $vc23 = str_replace($search, $replace, $row['vc23_'.$i], $n);
+                    fputs($fp, $vc23."\t");
+                    $annualTarget = str_replace($search, $replace, $row['annualTarget_'.$i], $n);
+                    fputs($fp, $annualTarget."\t");
+                    $quarterPlan = str_replace($search, $replace, $row['quarterPlan_'.$i], $n);
+                    fputs($fp, $quarterPlan."\t");
+                    $quarterResult = str_replace($search, $replace, $row['quarterResult_'.$i], $n);
+                    fputs($fp, $quarterResult."\t");
+                    $Performance = str_replace($search, $replace, $row['Performance_'.$i], $n);
+                    fputs($fp, $Performance."\t");
+                }
+    }
+    // ファイルを閉じる
+    fclose($fp);
  }
