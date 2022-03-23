@@ -15,10 +15,10 @@
     getBackup($conn, $year);
 
     // *************** Download *************** //
-    download("test.txt");
+    // download("test.txt");
      
     // ************* Back to Admin ************ //
-    header("location: ./Administrator.php");
+    header("location: ./backup.php");
 
 
     // *************** Sub-Function of Download *************** //
