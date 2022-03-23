@@ -65,7 +65,8 @@ elseif(isset($_POST['addVCspace'])){
  }
 // to admin.backup.php //
 elseif(isset($_POST['databaseBackup'])){
-    header("location: ../includes/admin.backup.php");
+    $year = $_POST['year'];
+    header("location: ../includes/admin.backup.php?year=$year");
  }
 elseif(isset($_POST['Logout'])){
     header("location: ../login.php");
