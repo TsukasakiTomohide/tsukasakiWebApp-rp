@@ -1217,43 +1217,43 @@ function getBackup($conn, $year){
     $fp = fopen("test.txt", "w");
 
     // Adding Column Header
-    $data = "\r\nName\tEmail\tQuarter\tVC\tPhase\tTotal Eval\t";
+    $data = "\r\nName;Email;Quarter;VC\PhaseTotal Eval;";
         for ($i = 1; $i <= 5; $i ++){
-            $data = $data."Self Eval_".$i."\t"."Final Eval_".$i."\t";
+            $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
         }
         for ($i = 1; $i <= 5; $i ++){
-            $data = $data."Boss's Plan_".$i."\t"."Annual Target_".$i."\t"."Quarter Plan_".$i."\t"."Quarter Result_".$i."\t"."Performance_".$i."\t";
+            $data = $data."Boss's Plan_".$i.";"."Annual Target_".$i.";"."Quarter Plan_".$i.";"."Quarter Result_".$i.";"."Performance_".$i.";";
         }
     fputs($fp, $data);
 
-    $search = array("\n", "\r","\t");
-    $replace = array("", "","");
+    $search = array("\n", "\r","\t",";");
+    $replace = array("", "","",":");
     while($row = pdoFetch($stmt)){
         // ファイルに書き込む
 
         $data = "\r\n".
-                $row['usersName']."\t".
-                $row['usersEmail']."\t".
-                $row['quarter']."\t".
-                $row['vc']."\t".
-                $row['phase']."\t".
-                $row['TotalEval']."\t";
+                $row['usersName'].";".
+                $row['usersEmail'].";".
+                $row['quarter'].";".
+                $row['vc'].";".
+                $row['phase'].";".
+                $row['TotalEval'].";";
                 for ($i = 1; $i <= 5; $i ++){
-                    $data = $data.$row['selfEval_'.$i]."\t".$row['finalEval_'.$i]."\t";
+                    $data = $data.$row['selfEval_'.$i].";".$row['finalEval_'.$i].";";
                 }
                 fputs($fp, $data);
 
                 for ($i = 1; $i <= 5; $i ++){
                     $vc23 = str_replace($search, $replace, $row['vc23_'.$i], $n);
-                    fputs($fp, $vc23."\t");
+                    fputs($fp, $vc23.";");
                     $annualTarget = str_replace($search, $replace, $row['annualTarget_'.$i], $n);
-                    fputs($fp, $annualTarget."\t");
+                    fputs($fp, $annualTarget.";");
                     $quarterPlan = str_replace($search, $replace, $row['quarterPlan_'.$i], $n);
-                    fputs($fp, $quarterPlan."\t");
+                    fputs($fp, $quarterPlan.";");
                     $quarterResult = str_replace($search, $replace, $row['quarterResult_'.$i], $n);
-                    fputs($fp, $quarterResult."\t");
+                    fputs($fp, $quarterResult.";");
                     $Performance = str_replace($search, $replace, $row['Performance_'.$i], $n);
-                    fputs($fp, $Performance."\t");
+                    fputs($fp, $Performance.";");
                 }
     }
     // ファイルを閉じる
