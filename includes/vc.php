@@ -2,6 +2,7 @@
     include_once 'header.php';
     require_once 'dbh.inc.php';
     include_once 'vc.functions.php';
+
     //if(!isset($_SESSION)){
     //    session_start();
     // }
@@ -118,7 +119,7 @@
         $DisableVC3button = DisabledVC3Button($_SESSION['usersposition'], $vc, $ApproverVC);?>
         <div style = 'text-align: center; width: 1500px'>
             <form action = 'staff.inc.php' class ="frame" method = 'post'>
-                <p>VC3<button type = 'submit' name = 'vcOpen' style = 'width:50px; height:20px' <?php echo("value = '".$year.$quarter.'3'.$_SESSION['bossemail']."' ".$DisableVC3button);?>><?php echo('Q'.$quarter);?></button></p>
+                <p>VC3 of your manager <button type = 'submit' name = 'vcOpen' style = 'width:50px; height:20px' <?php echo("value = '".$year.$quarter.'3'.$_SESSION['bossemail']."' ".$DisableVC3button);?>><?php echo('Q'.$quarter);?></button></p>
                 <?php
                     if($DisableVC3button == 'disabled'){
                         echo('VC3 is not approved<br><br>');
@@ -194,7 +195,7 @@
                     $vcThisPage["Performance_".($i+1)] = '';
                 }?>
                 <h3 style = "position: relative; top: -60px">Goal <?php echo($i+1); ?></h3>
-                <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>t' value = 'VC<?php echo($vc-1);?> Solutions'             maxlength = '100' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
+                <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>t' value = "Boss's Plan"                                  maxlength = '100' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
                 <input type = 'text'   name = 'Target_<?php echo($i+1); ?>t' value = 'Annual Target'                                maxlength = '100' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
                 <input type = 'text'   name = 'Plan_<?php   echo($i+1); ?>t' value = 'Quarter Plans'                                maxlength = '100' disabled                          style='position:relative;top: -75px;width:298px;left: 56px'>
                 <input type = 'text'   name = 'Wei_<?php    echo($i+1); ?>t' value = 'Weight'                                       maxlength = '100' disabled                          style='position:relative;top: -75px;width:100px;left: 56px'>
@@ -228,5 +229,6 @@
             </form>
         </div>
 </section>
+
 </body>
 </html>
