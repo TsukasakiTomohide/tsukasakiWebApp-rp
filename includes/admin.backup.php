@@ -18,7 +18,7 @@
     // FileDownload();
      
     // ************* Back to Admin ************ //
-    header("location: ./test.txt");
+    header("location: ./backup.php");
 
 
     // *************** Sub-Function of Download *************** //
