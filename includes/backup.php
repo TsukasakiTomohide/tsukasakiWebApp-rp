@@ -11,8 +11,8 @@
       }
      fclose($myfile);
 
-     $myfile = fopen("test.txt", "w");
-     fclose($myfile);
+     // $myfile = fopen("test.txt", "w");
+     // fclose($myfile);
 
 ?>
 
