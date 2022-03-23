@@ -70,7 +70,7 @@
         <input type="submit" name="registerEmployee" value="Register Employee"     style = "width: 150px"/>
         <input type="submit" name="reviseEmployee"   value="Revise Employee"       style = "width: 150px"/><br><br>
         <input type="submit" name="addVCspace"       value="Add VC Space"          style = "width: 150px; position: relative; left: -77px"/>
-        <!--<input type="submit" name="databaseBackup"   value="Backup"                style = "width: 150px; position: relative; left: -77px"/>-->
+        <input type="submit" name="databaseBackup"   value="Backup"                style = "width: 150px; position: relative; left: -77px"/>
         <input type="submit" name ="Logout"          value="Logout"                style = "width: 150px; position: relative; left:  77px"/>
         <input type="submit" name ="toExecutive"     value="to Executive"          style = "width: 150px; position: relative; left:  77px" <?php if($_SESSION['usersposition'] != 'executive'){echo('disabled');} ?>/><br><br><br>
 
