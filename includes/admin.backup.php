@@ -30,13 +30,13 @@
         $filename = 'test.txt';
           
         // File type
-        header('Content-Type: application/force-download');
+        // header('Content-Type: application/force-download');
           
         // Get the file size to show the progress of download
-        header('Content-Length: '.filesize($filepath));
+        // header('Content-Length: '.filesize($filepath));
           
         // Request download and rename
-        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        // header('Content-Disposition: attachment; filename="'.$filename.'"');
           
         // Read the file and start download
         // readfile($filepath);
