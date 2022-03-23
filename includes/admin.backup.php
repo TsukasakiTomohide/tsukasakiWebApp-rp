@@ -15,7 +15,7 @@
     getBackup($conn, $year);
 
     // *************** Download *************** //
-    // FileDownload();
+     FileDownload();
      
     // ************* Back to Admin ************ //
     header("location: ./Administrator.php");
