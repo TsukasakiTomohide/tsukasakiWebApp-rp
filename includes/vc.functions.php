@@ -1209,7 +1209,7 @@ function pdoFetch($stmt){
  }
 
 function getBackup($conn, $year){
-    $sql = "SELECT * FROM [dbo].[$year]";
+    $sql = "SELECT * FROM [dbo].[$year] ORDER BY usersName ASC, quarter ASC;";
     $stmt = pdoPrepare($conn, $sql);
     $results = pdoExecute($stmt);
 
@@ -1217,7 +1217,7 @@ function getBackup($conn, $year){
     $fp = fopen("test.txt", "w");
 
     // Adding Column Header
-    $data = "\r\nName;Email;Quarter;VC\PhaseTotal Eval;";
+    $data = "\r\nyear;$year\r\nName;Email;Quarter;VC\PhaseTotal Eval;";
         for ($i = 1; $i <= 5; $i ++){
             $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
         }
@@ -1227,7 +1227,7 @@ function getBackup($conn, $year){
     fputs($fp, $data);
 
     $search = array("\n", "\r","\t",";");
-    $replace = array("", "","",":");
+    $replace = array("", "","",".");
     while($row = pdoFetch($stmt)){
         // ファイルに書き込む
 
