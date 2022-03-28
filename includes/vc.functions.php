@@ -1209,29 +1209,46 @@ function pdoFetch($stmt){
  }
 
 function getBackup($conn, $year){
-    $sql = "SELECT * FROM [dbo].[$year] ORDER BY usersName ASC, quarter ASC;";
-    $stmt = pdoPrepare($conn, $sql);
-    $results = pdoExecute($stmt);
-
-    // 書き込みモードでファイルを開く
-    $fp = fopen("test.txt", "w");
-
-    // Adding Column Header
-    $data = "\r\nyear;$year\r\nName;Email;Quarter;VC\PhaseTotal Eval;";
-        for ($i = 1; $i <= 5; $i ++){
-            $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
-        }
-        for ($i = 1; $i <= 5; $i ++){
-            $data = $data."Boss's Plan_".$i.";"."Annual Target_".$i.";"."Quarter Plan_".$i.";"."Quarter Result_".$i.";"."Performance_".$i.";";
-        }
-    fputs($fp, $data);
 
     $search = array("\n", "\r","\t",";");
     $replace = array("", "","",".");
-    while($row = pdoFetch($stmt)){
-        // ファイルに書き込む
 
-        $data = "\r\n".
+    // 書き込みモードでファイルを開く
+    $fp = fopen("test.txt", "w");
+        
+    // Adding Column Header
+    $data = "\r\nyear;$year\r\nName;Email;Quarter;VC\PhaseTotal Eval;";
+    for ($i = 1; $i <= 5; $i ++){
+        $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
+    }
+    for ($i = 1; $i <= 5; $i ++){
+        $data = $data."Boss's Plan_".$i.";"."Annual Target_".$i.";"."Quarter Plan_".$i.";"."Quarter Result_".$i.";"."Performance_".$i.";";
+    }
+    fputs($fp, $data);
+
+    // Get Active Users
+    $sql = "SELECT usersEmail FROM users WHERE active = ? ORDER BY usersName ASC;";
+    $stmt = pdoPrepare($conn, $sql);
+    pdoBind($stmt, 1, 'active', PDO::PARAM_STR);
+    $Result = pdoExecute($stmt);
+
+    // Receive data //
+    while ($row = pdoFetch($stmt)){
+        $activeEmails[] = $row;
+    }
+
+    // Receive data //
+    foreach($activeEmails as $usersEmail){
+        $sql = "SELECT * FROM [dbo].[$year] WHERE usersEmail = ? ORDER BY quarter ASC;";
+        $stmt = pdoPrepare($conn, $sql);
+        // Make a SQL statement
+        pdoBind($stmt, 1, $usersEmail['usersEmail'], PDO::PARAM_STR);   
+        // Send the SQL statement
+        $results = pdoExecute($stmt);
+
+        while($row = pdoFetch($stmt)){
+            // ファイルに書き込む
+            $data = "\r\n".
                 $row['usersName'].";".
                 $row['usersEmail'].";".
                 $row['quarter'].";".
@@ -1255,6 +1272,7 @@ function getBackup($conn, $year){
                     $Performance = str_replace($search, $replace, $row['Performance_'.$i], $n);
                     fputs($fp, $Performance.";");
                 }
+        }
     }
     // ファイルを閉じる
     fclose($fp);
