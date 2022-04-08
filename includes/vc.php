@@ -93,7 +93,7 @@
 
 <!-- Title -->
 <div style = "text-align: center; width: 1500px"> <!--The alignment is center-->
-    <h1><?php echo($vcThisPage["usersName"]);?><br>VC<?php echo($vc);?></h1>
+    <h1><?php echo($vcThisPage["usersName"]);?><br><?php echo("Q".$quarter)?> VC<?php echo($vc);?></h1>
  </div>
 <!--Error-->
 <?php
