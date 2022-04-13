@@ -7,6 +7,7 @@ require_once 'dbh.inc.php';
 include_once 'vc.functions.php';
 
 if(isset($_POST["save"])){
+    WordCount();
     $year       = substr($_POST["save"], 0, 4);
     $quarter    = substr($_POST["save"], 4, 1);
     $vc         = substr($_POST["save"], 5, 1);
@@ -43,7 +44,7 @@ if(isset($_POST["save"])){
  }
 
 elseif(isset($_POST["submit"])){    
-
+    WordCount();
     $totalWeight = $_POST['Wei_1'] + $_POST['Wei_2'] + $_POST['Wei_3'] + $_POST['Wei_4'] + $_POST['Wei_5'];
 
     $year       = substr($_POST["submit"], 0, 4);
@@ -115,6 +116,7 @@ elseif(isset($_POST["submit"])){
 
 // Approve button was clicked
 if(isset($_POST["Approve"])){
+    WordCount();
     $year       = substr($_POST["Approve"], 0, 4);
     $quarter    = substr($_POST["Approve"], 4, 1);
     $vc         = substr($_POST["Approve"], 5, 1);
@@ -133,6 +135,7 @@ if(isset($_POST["Approve"])){
  }
 // Reject button was clicked
 elseif(isset($_POST["Reject"])){
+    WordCount();
     $year       = substr($_POST["Reject"], 0, 4);
     $quarter    = substr($_POST["Reject"], 4, 1);
     $vc         = substr($_POST["Reject"], 5, 1);
@@ -196,7 +199,7 @@ function rejectVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
     if($phase == 'Goals Approved' || $phase == 'Self Evaluated'){
         $Result = rejectUpdateVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
             if ($Result == false){
-                header("location: ../includes/vc.phpp?error=stmtfailed");
+                header("location: ../includes/vc.php?error=stmtfailed");
                 exit();
             }
     }
@@ -216,7 +219,7 @@ function rejectVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $
     // Change COLUMN `phase` in TABLE `year`
     $Result = vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail);
     if ($Result == false){
-        header("location: ../includes/vc.phpp?error=stmtfailed");
+        header("location: ../includes/vc.php?error=stmtfailed");
         exit();
     }
 
@@ -251,7 +254,7 @@ function approveVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, 
     if($phase == 'Self Evaluated'){
         $Result = approveUpdateVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, $vcData);
             if ($Result == false){
-                header("location: ../includes/vc.phpp?error=stmtfailed");
+                header("location: ../includes/vc.php?error=stmtfailed");
                 exit();
             }
     }
@@ -266,7 +269,7 @@ function approveVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, 
     // Change COLUMN `phase` in TABLE `year`
     $Result = vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail);
     if ($Result == false){
-        header("location: ../includes/vc.phpp?error=stmtfailed");
+        header("location: ../includes/vc.php?error=stmtfailed");
         exit();
     }
 
@@ -295,5 +298,30 @@ function approveVC($conn, $year, $quarter, $vc, $phase, $calender, $usersEmail, 
     }
     elseif($_SESSION["usersposition"] == 'administrator'){  // to Administrator.php page
         header("location: ../includes/Administrator.php");
+    }
+ }
+
+function WordCount(){
+    for ($i = 1; $i <= 5; $i++){
+        if (isset($_POST["vc23_$i"]) && strlen($_POST["vc23_$i"]) > 920){
+            header("location: ../includes/vc.php?error=wordcountBoss's Plan in Goal $i");
+            exit();
+         }
+        elseif (isset($_POST["Target_$i"]) && strlen($_POST["Target_$i"]) > 920){
+            header("location: ../includes/vc.php?error=wordcountAnnual Target in Goal $i");
+            exit();
+         }
+        elseif (isset($_POST["Plan_$i"]) && strlen($_POST["Plan_$i"]) > 920){
+            header("location: ../includes/vc.php?error=wordcountQuarter Plans in Goal $i");
+            exit();
+         }
+        elseif (isset($_POST["Res_$i"]) && strlen($_POST["Res_$i"]) > 920){
+            header("location: ../includes/vc.php?error=wordcountQuarter Results in Goal $i");
+            exit();
+         }
+        elseif (isset($_POST["Per_$i"]) && strlen($_POST["Per_$i"]) > 920){
+            header("location: ../includes/vc.php?error=wordcountStaff Performance in Goal $i");
+            exit();
+         }
     }
  }
