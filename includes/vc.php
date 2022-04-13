@@ -9,11 +9,9 @@
 
     /* Employee information of this vc. The info comes from the URL.
        $year, $quarter, $vc */
-    if(isset($_GET['when'])){
-        $year       = substr($_GET['when'], 0, 4);
-        $quarter    = substr($_GET['when'], 4, 1);
-        $vc         = substr($_GET['when'], 5, 1);
-     }
+    $year       =$_SESSION['year'];
+    $quarter    =$_SESSION['quarter'];
+    $vc         =$_SESSION['vc'];
     
     $usersEmail = $_SESSION['VcOwnerEmail'];// This VC's employee email
 
@@ -21,7 +19,7 @@
     //// Get this VC's employee VC data ////
     ////////////////////////////////////////
     // The VC data of this employee in a specific year, quarter and vc
-    $vcThisPage = getVCdata($conn, $year, $quarter, $vc, $usersEmail);
+     $vcThisPage = getVCdata($conn, $year, $quarter, $vc, $usersEmail);
 
     // VC data is not collected
     if(!$vcThisPage){
@@ -108,6 +106,11 @@
      }
     elseif(isset($_GET['error']) && $_GET['error'] == 'weightNot100'){
         echo ('<p style = "text-align: center; width: 1500px"><font color = "red">The total weight from Goal 1 to Goal 5 has to be 100.</font></p>');
+     }
+    elseif(isset($_GET['error']) && substr($_GET['error'], 0, 9) == 'wordcount'){
+        echo ('<p style = "text-align: center; width: 1500px"><font color = "red">');
+        echo ("The word count of ".substr($_GET['error'], 9)." is over 900 charactors.");
+        echo ('</font></p>');
      }
     else{
         echo('<p><br></p>');
@@ -221,8 +224,8 @@
                         <option value = 'A' <?php echo($SelectEval[$i][3]); ?>>A</option>
                         <option value = ' ' <?php echo($SelectEval[$i][4]); ?>> </option>
                 </select><br><br>
-                <input type = 'text'   name = 'Res_<?php    echo($i+1); ?>t' value = 'Results of the quarter'                     maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
-                <input type = 'text'   name = 'Per_<?php    echo($i+1); ?>t' value = 'Performance of the staff'                   maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
+                <input type = 'text'   name = 'Res_<?php    echo($i+1); ?>t' value = 'Quarter Results'                            maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
+                <input type = 'text'   name = 'Per_<?php    echo($i+1); ?>t' value = 'Staff Performance'                          maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
                 <textarea              name = 'Res_<?php    echo($i+1); ?>'                                                       maxlength = '900' <?php echo($DisabledResSelf);?>     style='position:relative;top:-87px;width:570px;height:240px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["quarterResult_".($i+1)]);?></textarea>
                 <textarea              name = 'Per_<?php    echo($i+1); ?>'                                                       maxlength = '900' <?php echo($DisabledPerformance);?> style='position:relative;top:-87px;width:570px;height:240px;resize:none;vertical-align:top;' wrap ='hard'><?php echo($vcThisPage["Performance_".($i+1)]);?></textarea>
             <?php } ?>
