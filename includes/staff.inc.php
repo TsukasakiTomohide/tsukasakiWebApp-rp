@@ -11,7 +11,10 @@
         // $vcName includes year + quarter + vc + usersEmail
         $vcName = substr($_POST['vcOpen'], 0, 6); // It comes from buttonValueColor() of vc.functions.php
         $_SESSION['VcOwnerEmail'] = substr($_POST['vcOpen'], 6);
-        header("location: ../includes/vc.php?when=$vcName");
+        $_SESSION['year']       = substr($vcName, 0, 4);
+        $_SESSION['quarter']    = substr($vcName, 4, 1);
+        $_SESSION['vc']         = substr($vcName, 5, 1);
+        header("location: ../includes/vc.php?");
      }
 
     // Password Change button on passwordChange.php
