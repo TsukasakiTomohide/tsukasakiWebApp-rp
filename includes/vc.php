@@ -217,7 +217,7 @@
                         <option value = ' ' <?php echo($SelectSelfEval[$i][4]); ?>> </option>
                 </select>
                 <input type = 'text'   name = 'Eval_<?php   echo($i+1); ?>t' value = 'Evaluation'                                 maxlength = '100' disabled                            style='position:relative;top:61px;width:100px;left:-56px'>
-                <select                name = 'Eval_<?php   echo($i+1); ?>t'                                                                        <?php echo($DisabledFinalEval);?>   style='position:relative;top:81px;width:108px;left:-168px;height: 50px;vertical-align:top'>
+                <select                name = 'Eval_<?php   echo($i+1); ?>'                                                                        <?php echo($DisabledFinalEval);?>   style='position:relative;top:81px;width:108px;left:-168px;height: 50px;vertical-align:top'>
                         <option value = 'D' <?php echo($SelectEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectEval[$i][1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectEval[$i][2]); ?>>B</option>
