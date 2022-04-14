@@ -19,7 +19,7 @@
     //// Get this VC's employee VC data ////
     ////////////////////////////////////////
     // The VC data of this employee in a specific year, quarter and vc
-     $vcThisPage = getVCdata($conn, $year, $quarter, $vc, $usersEmail);
+    $vcThisPage = getVCdata($conn, $year, $quarter, $vc, $usersEmail);
 
     // VC data is not collected
     if(!$vcThisPage){
