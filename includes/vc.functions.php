@@ -1074,7 +1074,7 @@ function createNewVcTable($conn, $year){
         $columnName[7 + 8 * $i]  = 'vc23_'.($i + 1);
         $columnName[8 + 8 * $i]  = 'annualTarget_'.($i + 1);
         $columnName[9 + 8 * $i]  = 'weight_'.($i + 1);
-        $columnName[10 + 8 * $i]  = 'quarterPlan_'.($i + 1);
+        $columnName[10 + 8 * $i] = 'quarterPlan_'.($i + 1);
         $columnName[11 + 8 * $i] = 'quarterResult_'.($i + 1);
         $columnName[12 + 8 * $i] = 'selfEval_'.($i + 1);
         $columnName[13 + 8 * $i] = 'finalEval_'.($i + 1);
@@ -1087,15 +1087,15 @@ function createNewVcTable($conn, $year){
     $Datatype[3] = "int"; // phase
     $Datatype[4] = "varchar(14) NOT NULL DEFAULT 'Unsubmitted'";
     $Datatype[5] = 'varchar(10)';
-    $Datatype[6] = "varchar(1) NOT NULL DEFAULT ' '";
+    $Datatype[6] = "varchar(5) NOT NULL DEFAULT ' '";
     for($i = 0; $i <= 4; $i ++){
         $Datatype[7 + 8 * $i]  = 'varchar(1000)';
         $Datatype[8 + 8 * $i]  = 'varchar(1000)';
         $Datatype[9 + 8 * $i]  = 'int';
-        $Datatype[10 + 8 * $i]  = 'varchar(1000)';
+        $Datatype[10 + 8 * $i] = 'varchar(1000)';
         $Datatype[11 + 8 * $i] = 'varchar(1000)';
-        $Datatype[12 + 8 * $i] = "varchar(1)";
-        $Datatype[13 + 8 * $i] = "varchar(1)";
+        $Datatype[12 + 8 * $i] = "varchar(5)";
+        $Datatype[13 + 8 * $i] = "varchar(5)";
         $Datatype[14 + 8 * $i] = 'varchar(1000)';
      }
     
