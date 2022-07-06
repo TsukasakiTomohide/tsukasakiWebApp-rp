@@ -610,11 +610,17 @@ function SelectTotalEval($employeeInfo){
     elseif($employeeInfo['TotalEval'] =="B"){
         $SelectTotalfEval[2] = 'selected';
     }
-    elseif($employeeInfo['TotalEval'] =="A"){
+    elseif($employeeInfo['TotalEval'] =="B+"){
         $SelectTotalfEval[3] = 'selected';
     }
-    else{
+    elseif($employeeInfo['TotalEval'] =="A"){
         $SelectTotalfEval[4] = 'selected';
+    }
+    elseif($employeeInfo['TotalEval'] =="A+"){
+        $SelectTotalfEval[5] = 'selected';
+    }
+    else{
+        $SelectTotalfEval[6] = 'selected';
     }
 
     return $SelectTotalfEval;
@@ -634,11 +640,17 @@ function SelectSelfEval($employeeInfo){
         elseif($employeeInfo['selfEval_'.($i+1)] =="B"){
             $SelectSelfEval[$i][2] = 'selected';
         }
-        elseif($employeeInfo['selfEval_'.($i+1)] =="A"){
+        elseif($employeeInfo['selfEval_'.($i+1)] =="B+"){
             $SelectSelfEval[$i][3] = 'selected';
         }
-        else{
+        elseif($employeeInfo['selfEval_'.($i+1)] =="A"){
             $SelectSelfEval[$i][4] = 'selected';
+        }
+        elseif($employeeInfo['selfEval_'.($i+1)] =="A+"){
+            $SelectSelfEval[$i][5] = 'selected';
+        }
+        else{
+            $SelectSelfEval[$i][6] = 'selected';
         }
     }
     return $SelectSelfEval;
@@ -657,11 +669,17 @@ function SelectEval($employeeInfo){
         elseif($employeeInfo['finalEval_'.($i+1)] =="B"){
             $SelectEval[$i][2] = 'selected';
         }
-        elseif($employeeInfo['finalEval_'.($i+1)] =="A"){
+        elseif($employeeInfo['finalEval_'.($i+1)] =="B+"){
             $SelectEval[$i][3] = 'selected';
         }
-        else{
+        elseif($employeeInfo['finalEval_'.($i+1)] =="A"){
             $SelectEval[$i][4] = 'selected';
+        }
+        elseif($employeeInfo['finalEval_'.($i+1)] =="A+"){
+            $SelectEval[$i][5] = 'selected';
+        }
+        else{
+            $SelectEval[$i][6] = 'selected';
         }
     }
     return $SelectEval;
