@@ -178,7 +178,9 @@
                         <option value = 'D' <?php echo($SelectTotalEval[0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectTotalEval[1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectTotalEval[2]); ?>>B</option>
+                        <option value = 'B+' <?php echo($SelectTotalEval[3]); ?>>B+</option>
                         <option value = 'A' <?php echo($SelectTotalEval[3]); ?>>A</option>
+                        <option value = 'A+' <?php echo($SelectTotalEval[3]); ?>>A+</option>
                         <option value = ' ' <?php echo($SelectTotalEval[4]); ?>> </option>
                 </select>
             
@@ -213,7 +215,9 @@
                         <option value = 'D' <?php echo($SelectSelfEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectSelfEval[$i][1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectSelfEval[$i][2]); ?>>B</option>
+                        <option value = 'B+' <?php echo($SelectSelfEval[$i][2]); ?>>B+</option>
                         <option value = 'A' <?php echo($SelectSelfEval[$i][3]); ?>>A</option>
+                        <option value = 'A+' <?php echo($SelectSelfEval[$i][3]); ?>>A+</option>
                         <option value = ' ' <?php echo($SelectSelfEval[$i][4]); ?>> </option>
                 </select>
                 <input type = 'text'   name = 'Eval_<?php   echo($i+1); ?>t' value = 'Evaluation'                                 maxlength = '100' disabled                            style='position:relative;top:61px;width:100px;left:-56px'>
@@ -221,7 +225,9 @@
                         <option value = 'D' <?php echo($SelectEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectEval[$i][1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectEval[$i][2]); ?>>B</option>
+                        <option value = 'B+' <?php echo($SelectEval[$i][2]); ?>>B+</option>
                         <option value = 'A' <?php echo($SelectEval[$i][3]); ?>>A</option>
+                        <option value = 'A+' <?php echo($SelectEval[$i][3]); ?>>A+</option>
                         <option value = ' ' <?php echo($SelectEval[$i][4]); ?>> </option>
                 </select><br><br>
                 <input type = 'text'   name = 'Res_<?php    echo($i+1); ?>t' value = 'Quarter Results'                            maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
