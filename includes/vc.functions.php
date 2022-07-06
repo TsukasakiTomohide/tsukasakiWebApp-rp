@@ -1217,7 +1217,7 @@ function getBackup($conn, $year){
     $fp = fopen("test.txt", "w");
         
     // Adding Column Header
-    $data = "\r\nyear;$year\r\nName;Email;Quarter;VC\PhaseTotal Eval;";
+    $data = "\r\nyear;$year\r\nName;Email;Position;Report to;Quarter;VC\PhaseTotal Eval;";
     for ($i = 1; $i <= 5; $i ++){
         $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
     }
@@ -1227,22 +1227,22 @@ function getBackup($conn, $year){
     fputs($fp, $data);
 
     // Get Active Users
-    $sql = "SELECT usersEmail FROM users WHERE active = ? ORDER BY usersName ASC;";
+    $sql = "SELECT usersEmail, usersPosition, usersBoss FROM users WHERE active = ? ORDER BY usersName ASC;";
     $stmt = pdoPrepare($conn, $sql);
     pdoBind($stmt, 1, 'active', PDO::PARAM_STR);
     $Result = pdoExecute($stmt);
 
     // Receive data //
     while ($row = pdoFetch($stmt)){
-        $activeEmails[] = $row;
+        $usersInfo[] = $row;
     }
 
     // Receive data //
-    foreach($activeEmails as $usersEmail){
+    foreach($usersInfo as $userInfo){
         $sql = "SELECT * FROM [dbo].[$year] WHERE usersEmail = ? ORDER BY quarter ASC;";
         $stmt = pdoPrepare($conn, $sql);
         // Make a SQL statement
-        pdoBind($stmt, 1, $usersEmail['usersEmail'], PDO::PARAM_STR);   
+        pdoBind($stmt, 1, $userInfo['usersEmail'], PDO::PARAM_STR);   
         // Send the SQL statement
         $results = pdoExecute($stmt);
 
@@ -1251,6 +1251,8 @@ function getBackup($conn, $year){
             $data = "\r\n".
                 $row['usersName'].";".
                 $row['usersEmail'].";".
+                $userInfo['usersPosition'].";".
+                $userInfo['usersBoss'].";".
                 $row['quarter'].";".
                 $row['vc'].";".
                 $row['phase'].";".
