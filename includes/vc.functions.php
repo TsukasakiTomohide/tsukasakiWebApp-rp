@@ -1217,7 +1217,7 @@ function getBackup($conn, $year){
     $fp = fopen("test.txt", "w");
         
     // Adding Column Header
-    $data = "\r\nyear;$year\r\nName;Email;Position;Report to;Quarter;VC\PhaseTotal Eval;";
+    $data = "\r\nyear;$year\r\nName;Email;Position;Report to;Quarter;VC;PhaseTotal Eval;";
     for ($i = 1; $i <= 5; $i ++){
         $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
     }
