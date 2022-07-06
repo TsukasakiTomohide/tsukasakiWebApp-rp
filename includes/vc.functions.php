@@ -599,7 +599,7 @@ function setActInactEmployee($conn, $email, $act_inact){
 // *******************************************************//
 function SelectTotalEval($employeeInfo){
     $SelectTotalfEval = array();
-    $SelectTotalfEval = array_fill(0, 5, ' ');
+    $SelectTotalfEval = array_fill(0, 7, ' ');
 
     if($employeeInfo['TotalEval'] =="D"){
         $SelectTotalfEval[0] = 'selected';
@@ -629,7 +629,7 @@ function SelectTotalEval($employeeInfo){
 function SelectSelfEval($employeeInfo){
     $SelectSelfEval = array();
     for($i = 0; $i < 5; $i++){
-        $SelectSelfEval[$i] = array_fill(0, 5, ' ');
+        $SelectSelfEval[$i] = array_fill(0, 7, ' ');
 
         if($employeeInfo['selfEval_'.($i+1)] =="D"){
             $SelectSelfEval[$i][0] = 'selected';
@@ -658,7 +658,7 @@ function SelectSelfEval($employeeInfo){
 function SelectEval($employeeInfo){
     $SelectEval = array();
     for($i = 0; $i < 5; $i++){
-        $SelectEval[$i] = array_fill(0, 5, ' ');
+        $SelectEval[$i] = array_fill(0, 7, ' ');
 
         if($employeeInfo['finalEval_'.($i+1)] =="D"){
             $SelectEval[$i][0] = 'selected';
@@ -1235,7 +1235,7 @@ function getBackup($conn, $year){
     $fp = fopen("test.txt", "w");
         
     // Adding Column Header
-    $data = "\r\nyear;$year\r\nName;Email;Position;Report to;Quarter;VC;PhaseTotal Eval;";
+    $data = "\r\nyear;$year\r\nName;Email;Position;Report to;Quarter;VC;Phase;Total Eval;";
     for ($i = 1; $i <= 5; $i ++){
         $data = $data."Self Eval_".$i.";"."Final Eval_".$i.";";
     }
