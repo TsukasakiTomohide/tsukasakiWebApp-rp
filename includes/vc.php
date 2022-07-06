@@ -172,16 +172,19 @@
                 $SelectTotalEval[0] = '';
                 $SelectTotalEval[1] = '';
                 $SelectTotalEval[2] = '';
-                $SelectTotalEval[3] = 'selected';
+                $SelectTotalEval[3] = '';
+                $SelectTotalEval[4] = '';
+                $SelectTotalEval[5] = '';
+                $SelectTotalEval[6] = 'selected';
             } ?>
             <select                 name = 'TotalEval'                                  <?php echo($DisabledTotalEval);?>     style = "position: relative; left: 510px; top: -74px; width: 160x;  height: 30px">
                         <option value = 'D' <?php echo($SelectTotalEval[0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectTotalEval[1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectTotalEval[2]); ?>>B</option>
                         <option value = 'B+' <?php echo($SelectTotalEval[3]); ?>>B+</option>
-                        <option value = 'A' <?php echo($SelectTotalEval[3]); ?>>A</option>
-                        <option value = 'A+' <?php echo($SelectTotalEval[3]); ?>>A+</option>
-                        <option value = ' ' <?php echo($SelectTotalEval[4]); ?>> </option>
+                        <option value = 'A' <?php echo($SelectTotalEval[4]); ?>>A</option>
+                        <option value = 'A+' <?php echo($SelectTotalEval[5]); ?>>A+</option>
+                        <option value = ' ' <?php echo($SelectTotalEval[6]); ?>> </option>
                 </select>
             
             <?php for($i = 0; $i < 5; $i++){ 
@@ -215,20 +218,20 @@
                         <option value = 'D' <?php echo($SelectSelfEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectSelfEval[$i][1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectSelfEval[$i][2]); ?>>B</option>
-                        <option value = 'B+' <?php echo($SelectSelfEval[$i][2]); ?>>B+</option>
-                        <option value = 'A' <?php echo($SelectSelfEval[$i][3]); ?>>A</option>
-                        <option value = 'A+' <?php echo($SelectSelfEval[$i][3]); ?>>A+</option>
-                        <option value = ' ' <?php echo($SelectSelfEval[$i][4]); ?>> </option>
+                        <option value = 'B+' <?php echo($SelectSelfEval[$i][3]); ?>>B+</option>
+                        <option value = 'A' <?php echo($SelectSelfEval[$i][4]); ?>>A</option>
+                        <option value = 'A+' <?php echo($SelectSelfEval[$i][5]); ?>>A+</option>
+                        <option value = ' ' <?php echo($SelectSelfEval[$i][6]); ?>> </option>
                 </select>
                 <input type = 'text'   name = 'Eval_<?php   echo($i+1); ?>t' value = 'Evaluation'                                 maxlength = '100' disabled                            style='position:relative;top:61px;width:100px;left:-56px'>
                 <select                name = 'Eval_<?php   echo($i+1); ?>'                                                                        <?php echo($DisabledFinalEval);?>   style='position:relative;top:81px;width:108px;left:-168px;height: 50px;vertical-align:top'>
                         <option value = 'D' <?php echo($SelectEval[$i][0]); ?>>D</option>
                         <option value = 'C' <?php echo($SelectEval[$i][1]); ?>>C</option>
                         <option value = 'B' <?php echo($SelectEval[$i][2]); ?>>B</option>
-                        <option value = 'B+' <?php echo($SelectEval[$i][2]); ?>>B+</option>
-                        <option value = 'A' <?php echo($SelectEval[$i][3]); ?>>A</option>
-                        <option value = 'A+' <?php echo($SelectEval[$i][3]); ?>>A+</option>
-                        <option value = ' ' <?php echo($SelectEval[$i][4]); ?>> </option>
+                        <option value = 'B+' <?php echo($SelectEval[$i][3]); ?>>B+</option>
+                        <option value = 'A' <?php echo($SelectEval[$i][4]); ?>>A</option>
+                        <option value = 'A+' <?php echo($SelectEval[$i][5]); ?>>A+</option>
+                        <option value = ' ' <?php echo($SelectEval[$i][6]); ?>> </option>
                 </select><br><br>
                 <input type = 'text'   name = 'Res_<?php    echo($i+1); ?>t' value = 'Quarter Results'                            maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
                 <input type = 'text'   name = 'Per_<?php    echo($i+1); ?>t' value = 'Staff Performance'                          maxlength = '100' disabled                            style='position:relative;top:-87px;width:568px'>
