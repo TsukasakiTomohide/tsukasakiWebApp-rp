@@ -599,28 +599,25 @@ function setActInactEmployee($conn, $email, $act_inact){
 // *******************************************************//
 function SelectTotalEval($employeeInfo){
     $SelectTotalfEval = array();
-    $SelectTotalfEval = array_fill(0, 7, ' ');
+    $SelectTotalfEval = array_fill(0, 6, ' ');
 
-    if($employeeInfo['TotalEval'] =="D"){
+    if($employeeInfo['TotalEval'] =="C"){
         $SelectTotalfEval[0] = 'selected';
     }
-    elseif($employeeInfo['TotalEval'] =="C"){
+    elseif($employeeInfo['TotalEval'] =="B"){
         $SelectTotalfEval[1] = 'selected';
     }
-    elseif($employeeInfo['TotalEval'] =="B"){
+    elseif($employeeInfo['TotalEval'] =="B+"){
         $SelectTotalfEval[2] = 'selected';
     }
-    elseif($employeeInfo['TotalEval'] =="B+"){
+    elseif($employeeInfo['TotalEval'] =="A"){
         $SelectTotalfEval[3] = 'selected';
     }
-    elseif($employeeInfo['TotalEval'] =="A"){
+    elseif($employeeInfo['TotalEval'] =="A+"){
         $SelectTotalfEval[4] = 'selected';
     }
-    elseif($employeeInfo['TotalEval'] =="A+"){
-        $SelectTotalfEval[5] = 'selected';
-    }
     else{
-        $SelectTotalfEval[6] = 'selected';
+        $SelectTotalfEval[5] = 'selected';
     }
 
     return $SelectTotalfEval;
@@ -629,28 +626,25 @@ function SelectTotalEval($employeeInfo){
 function SelectSelfEval($employeeInfo){
     $SelectSelfEval = array();
     for($i = 0; $i < 5; $i++){
-        $SelectSelfEval[$i] = array_fill(0, 7, ' ');
+        $SelectSelfEval[$i] = array_fill(0, 6, ' ');
 
-        if($employeeInfo['selfEval_'.($i+1)] =="D"){
+        if($employeeInfo['selfEval_'.($i+1)] =="C"){
             $SelectSelfEval[$i][0] = 'selected';
         }
-        elseif($employeeInfo['selfEval_'.($i+1)] =="C"){
+        elseif($employeeInfo['selfEval_'.($i+1)] =="B"){
             $SelectSelfEval[$i][1] = 'selected';
         }
-        elseif($employeeInfo['selfEval_'.($i+1)] =="B"){
+        elseif($employeeInfo['selfEval_'.($i+1)] =="B+"){
             $SelectSelfEval[$i][2] = 'selected';
         }
-        elseif($employeeInfo['selfEval_'.($i+1)] =="B+"){
+        elseif($employeeInfo['selfEval_'.($i+1)] =="A"){
             $SelectSelfEval[$i][3] = 'selected';
         }
-        elseif($employeeInfo['selfEval_'.($i+1)] =="A"){
+        elseif($employeeInfo['selfEval_'.($i+1)] =="A+"){
             $SelectSelfEval[$i][4] = 'selected';
         }
-        elseif($employeeInfo['selfEval_'.($i+1)] =="A+"){
-            $SelectSelfEval[$i][5] = 'selected';
-        }
         else{
-            $SelectSelfEval[$i][6] = 'selected';
+            $SelectSelfEval[$i][5] = 'selected';
         }
     }
     return $SelectSelfEval;
@@ -658,28 +652,25 @@ function SelectSelfEval($employeeInfo){
 function SelectEval($employeeInfo){
     $SelectEval = array();
     for($i = 0; $i < 5; $i++){
-        $SelectEval[$i] = array_fill(0, 7, ' ');
+        $SelectEval[$i] = array_fill(0, 6, ' ');
 
-        if($employeeInfo['finalEval_'.($i+1)] =="D"){
+        if($employeeInfo['finalEval_'.($i+1)] =="C"){
             $SelectEval[$i][0] = 'selected';
         }
-        elseif($employeeInfo['finalEval_'.($i+1)] =="C"){
+        elseif($employeeInfo['finalEval_'.($i+1)] =="B"){
             $SelectEval[$i][1] = 'selected';
         }
-        elseif($employeeInfo['finalEval_'.($i+1)] =="B"){
+        elseif($employeeInfo['finalEval_'.($i+1)] =="B+"){
             $SelectEval[$i][2] = 'selected';
         }
-        elseif($employeeInfo['finalEval_'.($i+1)] =="B+"){
+        elseif($employeeInfo['finalEval_'.($i+1)] =="A"){
             $SelectEval[$i][3] = 'selected';
         }
-        elseif($employeeInfo['finalEval_'.($i+1)] =="A"){
+        elseif($employeeInfo['finalEval_'.($i+1)] =="A+"){
             $SelectEval[$i][4] = 'selected';
         }
-        elseif($employeeInfo['finalEval_'.($i+1)] =="A+"){
-            $SelectEval[$i][5] = 'selected';
-        }
         else{
-            $SelectEval[$i][6] = 'selected';
+            $SelectEval[$i][5] = 'selected';
         }
     }
     return $SelectEval;
