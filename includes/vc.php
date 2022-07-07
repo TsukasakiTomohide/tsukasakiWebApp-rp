@@ -178,10 +178,10 @@
             } ?>
             <select name = 'TotalEval'  title=
 "A+: achievement 125%+/ special result
-A:  achievement 100%+/ better than last time
+A:   achievement 100%+/ better than last time
 B+: achievement 75%+/ same as last time
-B:  achievement less than75%/ worse than last time
-C:  plan cancelled"
+B:   achievement less than75%/ worse than last time
+C:   plan cancelled"
             
                                 <?php echo($DisabledTotalEval);?>     style = "position: relative; left: 510px; top: -74px; width: 160x;  height: 30px">
                         <option value = 'C'  <?php echo($SelectTotalEval[0]); ?>>C</option>
@@ -225,10 +225,10 @@ C:  plan cancelled"
                 <input type = 'number' name = 'Wei_<?php    echo($i+1); ?>'  value = '<?php echo($vcThisPage["weight_".($i+1)]);?>' maxlength = '3' <?php echo($DisableWeight);?>     style='position:relative;top: -75px;width:100px;left:168px;height: 50px;vertical-align:top;'        max='100' min='0'>
                 <select                title=
 "A+: achievement 125%+/ special result
-A:  achievement 100%+/ better than last time
+A:   achievement 100%+/ better than last time
 B+: achievement 75%+/ same as last time
-B:  achievement less than75%/ worse than last time
-C:  plan cancelled"
+B:   achievement less than75%/ worse than last time
+C:   plan cancelled"
                         name = 'Self_<?php   echo($i+1); ?>'                                                                         <?php echo($DisabledResSelf);?>     style='position:relative;top: 7px;width:108px;left: 56px;height: 50px;vertical-align:top'>
                         <option value = 'C'  <?php echo($SelectSelfEval[$i][0]); ?>>C</option>
                         <option value = 'B'  <?php echo($SelectSelfEval[$i][1]); ?>>B</option>
@@ -240,10 +240,10 @@ C:  plan cancelled"
                 <input type = 'text'   name = 'Eval_<?php   echo($i+1); ?>t' value = 'Evaluation'                                 maxlength = '100' disabled                            style='position:relative;top:61px;width:100px;left:-56px'>
                 <select                title=
 "A+: achievement 125%+/ special result
-A:  achievement 100%+/ better than last time
+A:   achievement 100%+/ better than last time
 B+: achievement 75%+/ same as last time
-B:  achievement less than75%/ worse than last time
-C:  plan cancelled"
+B:   achievement less than75%/ worse than last time
+C:   plan cancelled"
                         name = 'Eval_<?php   echo($i+1); ?>'                                                                        <?php echo($DisabledFinalEval);?>   style='position:relative;top:81px;width:108px;left:-168px;height: 50px;vertical-align:top'>
                         <option value = 'C'  <?php echo($SelectEval[$i][0]); ?>>C</option>
                         <option value = 'B'  <?php echo($SelectEval[$i][1]); ?>>B</option>
