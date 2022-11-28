@@ -2,9 +2,9 @@
     require_once 'dbh.inc.php';
     require_once 'vc.functions.php';
 
-    //if(!isset($_SESSION)){ // Session starts only when it is closed
-    //    session_start();
-    // }
+    if(!isset($_SESSION)){ // Session starts only when it is closed
+        session_start();
+     }
 
     // A VC button is clicked
     if(isset($_POST['vcOpen'])){
