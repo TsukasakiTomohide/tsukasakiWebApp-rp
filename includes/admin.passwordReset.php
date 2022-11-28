@@ -2,9 +2,9 @@
     include_once 'header.php';
     require_once 'dbh.inc.php';
     require_once 'vc.functions.php';
-    //if(!isset($_SESSION)){
-    //    session_start();
-    // } 
+    if(!isset($_SESSION)){
+        session_start();
+     } 
     // Nobody can directly go to Administrator.php. Login is necessary.
     if($_SESSION['usersposition'] != 'administrator' && $_SESSION['usersposition'] != 'executive'){
         header("location: ../login.php?error=adminerror");
