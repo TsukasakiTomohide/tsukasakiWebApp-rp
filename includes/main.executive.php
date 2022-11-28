@@ -3,9 +3,9 @@
     include_once 'header.php';
     require_once 'dbh.inc.php';
     require_once 'vc.functions.php';
-    //if(!isset($_SESSION)){
-    //    session_start();
-    // }
+    if(!isset($_SESSION)){
+        session_start();
+     }
 
     // Nobody can directly enter this page except executive. Login is necessary.
     if($_SESSION['usersposition'] != 'executive'){
