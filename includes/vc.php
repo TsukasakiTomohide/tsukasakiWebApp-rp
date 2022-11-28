@@ -117,7 +117,7 @@
 ?>
 <!-- VC3 Reference buttons -->
 <?php
-    if($ApproverVC != false && $_SESSION['usersposition'] == "staff" && $vc == '4'){ //staff & vc4
+    if($_SESSION['bossPosition'] != 'manager' && $ApproverVC != false && $_SESSION['usersposition'] == "staff" && $vc == '4'){ //staff & vc4
         $DisableVC3button = DisabledVC3Button($_SESSION['usersposition'], $vc, $ApproverVC);?>
         <div style = 'text-align: center; width: 1500px'>
             <form action = 'staff.inc.php' class ="frame" method = 'post'>
