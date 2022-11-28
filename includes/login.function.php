@@ -74,6 +74,11 @@ function loginUser($conn, $email, $pwd){
     $_SESSION['bossemail']     = $Result['bossEmail'];     // Used when sending email, passwordChange.php
     $_SESSION['usersemail']    = $email;                          // Used on Staff's Main Page
     $_SESSION['usersposition'] = $Result['usersPosition']; // Used on Administrator.php
+    
+    $ResultBoss = userExists($conn, $_SESSION['bossemail']);
+    $_SESSION['bossPosition'] = $ResultBoss['usersPosition'];
+    
+    $_SESSION['usersposition'] = $Result['usersPosition'];
 
     // The information is used to decide if managers approve or are approved.
     if ($Result['usersPosition'] == 'administrator'){
