@@ -1,6 +1,9 @@
 <?php
 require_once 'vc.functions.php';
 require_once '../config.php';
+if(!isset($_SESSION)){
+    session_start();
+ }
 
 // Check if either email or password is empty
 function emptyInputLogin ($email, $pwd){
