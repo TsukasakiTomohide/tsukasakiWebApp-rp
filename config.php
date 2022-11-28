@@ -1,2 +1,2 @@
 <?php
-    define('WildCardPW', '123456Aa%');
+    define('WildCardPW', '234567Aa%');
