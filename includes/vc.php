@@ -2,7 +2,6 @@
     include_once 'header.php';
     require_once 'dbh.inc.php';
     include_once 'vc.functions.php';
-
     if(!isset($_SESSION)){
         session_start();
      }
