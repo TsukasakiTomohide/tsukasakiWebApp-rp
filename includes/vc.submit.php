@@ -158,6 +158,7 @@ elseif(isset($_POST['toMain'])){
     {
         $url = substr($_POST['toMain'], 0, $pos+11);
         $_SESSION['VcOwnerEmail'] = substr($_POST['toMain'], $pos+11);
+        $_SESSION['vc'] = substr($_POST['toMain'], $pos+10, 1);
     }
     else
     {
