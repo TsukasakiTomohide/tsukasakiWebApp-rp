@@ -399,7 +399,8 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
     try {
         $usersName = checkEmailDuplicate($conn, $usersEmail);
         
-        $subject     = $usersName."'s VC was ".$state;
+        // $subject     = "A VC of ".$usersName." was ".$state;
+        $subject = "";
 
         if($phase == 'Goals Approved'){
             $body = "$usersName's VC of Q$quarter, $year was $state. Please check the document. The one on one meeting will be $calender.";
