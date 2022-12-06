@@ -1,7 +1,8 @@
 // using SendGrid's PHP Library
 // https://github.com/sendgrid/sendgrid-php
 require 'vendor/autoload.php';
-$sendgrid = new SendGrid("SENDGRID_APIKEY");
+
+$sendgrid = new SendGrid("ttsukasaki@hiokiusa.com", "MasakoShota08051019");
 $email    = new SendGrid\Email();
 
 $email->addTo("ttsukasaki@hiokiusa.com")
