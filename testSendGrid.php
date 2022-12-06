@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 $sendgrid = new SendGrid("SENDGRID_APIKEY");
 $email    = new SendGrid\Email();
 
-$email->addTo("tsukasaki.tomohide.com@gmail.com")
+$email->addTo("ttsukasaki@hiokiusa.com")
       ->setFrom("ttsukasaki@hiokiusa.com")
       ->setSubject("Sending with SendGrid is Fun")
       ->setHtml("and fast with the PHP helper library.");
