@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit4a80d4ff1cd3a8a3815a949fd77d1947
+class ComposerStaticInit9b5cad073ec884511544b94903ab28d9
 {
     public static $files = array (
         '79f66bc0a1900f77abe4a9a299057a0a' => __DIR__ . '/..' . '/starkbank/ecdsa/src/ellipticcurve.php',
@@ -59,9 +59,9 @@ class ComposerStaticInit4a80d4ff1cd3a8a3815a949fd77d1947
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit4a80d4ff1cd3a8a3815a949fd77d1947::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit4a80d4ff1cd3a8a3815a949fd77d1947::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit4a80d4ff1cd3a8a3815a949fd77d1947::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9b5cad073ec884511544b94903ab28d9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9b5cad073ec884511544b94903ab28d9::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9b5cad073ec884511544b94903ab28d9::$classMap;
 
         }, null, ClassLoader::class);
     }
