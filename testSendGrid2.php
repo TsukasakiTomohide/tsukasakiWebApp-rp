@@ -1,6 +1,5 @@
 <?php
-   require_once 'config.php';
-   require 'vendor/autoload.php'; // If you're using Composer (recommended)
+/*   require 'vendor/autoload.php'; // If you're using Composer (recommended)
 // Comment out the above line if not using Composer
 // require("./sendgrid/sendgrid-php.php");
 // If not using Composer, uncomment the above line and
@@ -17,12 +16,26 @@ $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-$sendgrid = new \SendGrid(SENDGRID_API_KEY);
+$a = "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";
+$sendgrid = new \SendGrid($a);
 try {
     $response = $sendgrid->send($email);
-    //print $response->statusCode() . "\n";
-    //print_r($response->headers());
-    //print $response->body() . "\n";
+    print $response->statusCode() . "\n";
+    print_r($response->headers());
+    print $response->body() . "\n";
 } catch (Exception $e) {
     echo 'Caught exception: '. $e->getMessage() ."\n";
 }
+*/
+
+$apiKey = "API KEY";
+$client = new SendGridClient(apiKey);
+$from = new EmailAddress("登録した送信者のメールアドレス@example.com", "fromの名前");
+$subject = "SendGridを使ったメール送信";
+$to = new EmailAddress("to@example.com", "toの名前");
+$plainTextContent = "テキストの内容です。";
+$htmlContent = "<strong>HTMLの内容です。</strong>";
+$msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+
+$response = client.SendEmailAsync(msg).ConfigureAwait(false);
+//Console.WriteLine(response.StatusCode.ToString());
