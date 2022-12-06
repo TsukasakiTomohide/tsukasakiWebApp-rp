@@ -1,6 +1,7 @@
 <?php
 
 print("a");
+/*
 $apiKey = "API KEY";
 $client = new SendGridClient($apiKey);
 $from = new EmailAddress("ttsukasaki@hiokiusa.com", "fromの名前");
@@ -11,4 +12,5 @@ $htmlContent = "<strong>HTMLの内容です。</strong>";
 $msg = MailHelper.CreateSingleEmail($from, $to, $subject, $plainTextContent, $htmlContent);
 
 $response = $client.SendEmailAsync(msg).ConfigureAwait(false);
-//Console.WriteLine(response.StatusCode.ToString());
+print($response.StatusCode.ToString());
+*/
