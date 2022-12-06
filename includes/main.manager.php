@@ -136,7 +136,7 @@
                             echo (' ');
                         }
                         else{
-                            echo ('<br><br>');
+                            echo ('<br><br>>');
                         }
                     }
                     $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
@@ -165,7 +165,7 @@
                 exit();
              }
 
-           echo ($year); // Year is displayed if data is found.
+           echo ($year.'<br>'); // Year is displayed if data is found.
 
            // All buttons in the year are desplayed
            $comp = "";
@@ -173,7 +173,7 @@
             
                 // If the person appears at the first time, type the name
                 if($comp != $singleVC['usersName']){
-                   echo ('<br><br>'.$singleVC['usersName'].'<br>');
+                   echo ($singleVC['usersName'].'<br>');
                 }
 
                 $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
@@ -183,6 +183,7 @@
 
                 $comp = $singleVC['usersName'];
            }
+           echo ('<br>');
         }
         ?>
      </form>
