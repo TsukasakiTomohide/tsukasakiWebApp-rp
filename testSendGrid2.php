@@ -26,7 +26,7 @@ try {
     echo 'Caught exception: '. $e->getMessage() ."\n";
 }
 */
-
+print("a");
 $apiKey = "API KEY";
 $client = new SendGridClient($apiKey);
 $from = new EmailAddress("ttsukasaki@hiokiusa.com", "fromの名前");
