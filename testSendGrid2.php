@@ -16,7 +16,6 @@ $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-$a = "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";
 $sendgrid = new \SendGrid($a);
 try {
     $response = $sendgrid->send($email);
@@ -29,7 +28,7 @@ try {
 */
 
 $apiKey = "API KEY";
-$client = new SendGridClient(apiKey);
+$client = new SendGridClient($apiKey);
 $from = new EmailAddress("ttsukasaki@hiokiusa.com", "fromの名前");
 $subject = "SendGridを使ったメール送信";
 $to = new EmailAddress("tsukasaki.tomohide.com@gmail.com", "toの名前");
@@ -37,5 +36,5 @@ $plainTextContent = "テキストの内容です。";
 $htmlContent = "<strong>HTMLの内容です。</strong>";
 $msg = MailHelper.CreateSingleEmail($from, $to, $subject, $plainTextContent, $htmlContent);
 
-$response = client.SendEmailAsync(msg).ConfigureAwait(false);
+$response = $client.SendEmailAsync(msg).ConfigureAwait(false);
 //Console.WriteLine(response.StatusCode.ToString());
