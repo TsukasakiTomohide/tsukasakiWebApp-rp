@@ -133,7 +133,7 @@
                 continue;
             }
 
-            echo ($year); // $year is displayed if data is found.
+            echo ($year.'<br>'); // $year is displayed if data is found.
 
             // All buttons in the year are desplayed
             $comp = "";
@@ -143,7 +143,7 @@
             foreach($subordinatesVCs as $singleVC){
                 // If the person appears at the first time, type the name
                 if($comp != $singleVC['usersName']){
-                    echo ('<br><br>'.$singleVC['usersName'].'<br>');
+                    echo ('<br>'.$singleVC['usersName'].'<br>');
                 }
                 elseif ($vc != $singleVC['vc']){
                     echo('<br><br>');
@@ -166,6 +166,7 @@
 
                 $i = $i + 1;
             }
+            echo('<br><br>');
         }
         ?>
     </form>
