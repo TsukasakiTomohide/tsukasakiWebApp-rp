@@ -82,6 +82,8 @@ function loginUser($conn, $email, $pwd){
 
     // The information is used to decide if managers approve or are approved.
     if ($Result['usersPosition'] == 'administrator'){
+        $_SESSION['approvername']  = $Result['usersName'];
+        $_SESSION['approveremail'] = $email;
         header("location: ../includes/Administrator.php");
      }
     elseif ($Result['usersPosition'] == 'staff'){
