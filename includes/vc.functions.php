@@ -392,9 +392,9 @@ function vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail){
 
 function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender){
 
-    //if(!isset($_SESSION)){
-    //    session_start();
-    // }
+    if(!isset($_SESSION)){
+        session_start();
+     }
 
     try {
         $usersName = checkEmailDuplicate($conn, $usersEmail);
@@ -409,10 +409,10 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
             $body = "$usersName's VC of Q$quarter, $year was $state. Please check the document."; 
         }
 
-        // sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
-        // if($state != 'saved'){
-        //     sendMailSendGrid($conn,$_SESSION["bossemail"], $_SESSION["usersboss"], $subject, $body);
-        // }
+        sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
+        if($state != 'saved'){
+           sendMailSendGrid($conn,$_SESSION["bossemail"], $_SESSION["usersboss"], $subject, $body);
+         }
 
         return true;
 
