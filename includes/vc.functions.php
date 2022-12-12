@@ -1,5 +1,9 @@
 <?php
 
+if(!isset($_SESSION)){
+    session_start();
+ }
+
 function staffVcInfo($conn, $year, $quarter, $vc, $vcPersonEmail){
 
     if ($quarter == 0){ // All quarters
@@ -392,9 +396,9 @@ function vcUpdatePhase($conn, $year, $quarter, $phase, $usersEmail){
 
 function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender){
 
-    if(!isset($_SESSION)){
-        session_start();
-     }
+    //if(!isset($_SESSION)){
+    //    session_start();
+    // }
 
     try {
         $usersName = checkEmailDuplicate($conn, $usersEmail);
