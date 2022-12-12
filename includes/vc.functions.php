@@ -403,8 +403,7 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
     try {
         $usersName = checkEmailDuplicate($conn, $usersEmail);
         
-        // $subject     = "A VC of ".$usersName." was ".$state;
-        $subject = "";
+        $subject     = "A VC of ".$usersName." was ".$state;
 
         if($phase == 'Goals Approved'){
             $body = "$usersName's VC of Q$quarter, $year was $state. Please check the document. The one on one meeting will be $calender.";
@@ -415,7 +414,7 @@ function sendMail($conn, $state, $usersEmail, $year, $quarter, $phase, $calender
 
         sendMailSendGrid($conn,$usersEmail, $usersName, $subject, $body);
         if($state != 'saved'){
-          sendMailSendGrid($conn,$_SESSION["bossemail"], $_SESSION["usersboss"], $subject, $body);
+          sendMailSendGrid($conn,$_SESSION["approveremail"], $_SESSION["approvername"], $subject, $body);
          }
 
         return true;
