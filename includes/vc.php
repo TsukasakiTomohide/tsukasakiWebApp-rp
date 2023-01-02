@@ -211,7 +211,7 @@
                     $vcThisPage["Performance_".($i+1)] = '';
                 }?>
                 <h3 style = "position: relative; top: -60px">Goal <?php echo($i+1); ?></h3>
-                <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>t' value = "Boss's Plan"                                  maxlength = '100' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
+                <input type = 'text'   name = 'vc23_<?php   echo($i+1); ?>t' value = "Manager/Director's Plan"                                  maxlength = '100' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
                 <input type = 'text'   name = 'Target_<?php echo($i+1); ?>t' value = 'Annual Target'                                maxlength = '100' disabled                          style='position:relative;top: -75px;width:348px;left: 56px'>
                 <input type = 'text'   name = 'Plan_<?php   echo($i+1); ?>t' value = 'Quarter Plans'                                maxlength = '100' disabled                          style='position:relative;top: -75px;width:298px;left: 56px'>
                 <input type = 'text'   name = 'Wei_<?php    echo($i+1); ?>t' value = 'Weight'                                       maxlength = '100' disabled                          style='position:relative;top: -75px;width:100px;left: 56px'>
