@@ -136,7 +136,7 @@
                             echo (' ');
                         }
                         else{
-                            echo ('<br><br>>');
+                            echo ('<br><br>');
                         }
                     }
                     $name = $year.$singleVC['quarter'].$singleVC['vc'].$singleVC['usersEmail'];
