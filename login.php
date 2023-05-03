@@ -16,9 +16,9 @@
     <!--Login data-->
     <div class = "login-form-form" style = "text-align: center">
         <form action = "includes/login.inc.php" method = "post"> <!--Data are transferred to login.inc.php-->
-            <input  type = "text"     name = "email" placeholder = "Email..."><br><br><br>
-            <input  type = "password" name = "pwd"   placeholder = "Password..."><br><br><br>
-            <button type = "submit"   name = "submit">Log In</button>
+            <input  type = "text"     size = "35" name = "email" placeholder = "Email..."><br><br><br>
+            <input  type = "password" size = "35" name = "pwd"   placeholder = "Password..."><br><br><br>
+            <button type = "submit"   style="height:50px; width:150px" name = "submit">Log In</button>
         </form>
     </div>
 </section>
