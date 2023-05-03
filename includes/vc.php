@@ -114,7 +114,7 @@
     else{
         echo('<p><br></p>');
     }
-?>
+ ?>
 <!-- VC3 Reference buttons -->
 <?php
     if($_SESSION['bossPosition'] == 'manager' && $_SESSION['usersposition'] == "staff" && $vc == '4'){ //staff & vc4
