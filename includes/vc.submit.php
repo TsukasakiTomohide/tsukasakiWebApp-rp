@@ -57,11 +57,6 @@ elseif(isset($_POST["submit"])){
     $quarter    = substr($_POST["submit"], 4, 1);
     $vc         = substr($_POST["submit"], 5, 1);
 
-    if ($totalWeight != 100){
-        header("location: ../includes/vc.php?when=$year$quarter$vc&error=weightNot100");
-        exit();
-    }
-
     $pos        = strpos($_POST["submit"], "%");
     $phase      = substr($_POST["submit"], 6, $pos - 6);
     $usersEmail = substr($_POST["submit"], $pos+1);
@@ -77,6 +72,12 @@ elseif(isset($_POST["submit"])){
 
     if ($Result == false){
         header("location: ../includes/vc.php?error=stmtfailed");
+        exit();
+    }
+
+    // Total weight is not 100 %
+    if ($totalWeight != 100){
+        header("location: ../includes/vc.php?when=$year$quarter$vc&error=weightNot100");
         exit();
     }
 
